@@ -7,6 +7,8 @@
     <title>Team 6 Project -temp title-</title>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="assets/css/reset.css">
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <!-- CSS file -->
@@ -27,8 +29,31 @@
 </head>
 
 <body>
-    <div class="jumbotron text-center">
-        <h1>Hi I'm a header</h1>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Insert Project Title Here</h1>
+        </div>
+
+        <div class="card bg-secondary">
+            <h5 class="card-header text-center">Input your pantry list here</h5>
+            <div class="card-body">
+                <div class="input-group">
+                    <input type="text" class="form-control" aria-label="addPantryItem">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-light" type="button" id="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card bg-secondary">
+            <h5 class="card-header text-center">Inventory</h5>
+            <div class="card-body">
+                <!-- inventory list goes in this div -->
+                <div id="inv-list"></div>
+            </div>
+        </div>
+
     </div>
 </body>
 

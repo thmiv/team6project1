@@ -1,1 +1,16 @@
-/* styling goes here */
+html{
+    height: 100%;
+    background-image: url(../images/background.jpg)
+}
+
+body{
+    background: #dedede00
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.jumbotron{
+    margin-top: 20px;
+}
