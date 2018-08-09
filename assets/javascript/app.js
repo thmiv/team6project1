@@ -7,7 +7,7 @@ var userIngredients = [];    // array to hold ingredients inputed by user
 function getPantry() {
     var newFBitem;  // get newly added item from Firebas
     database.ref("/Pantry").on("child_added", function(snapshot) {
-        newFBitem = snapshot.val().addPantryItem;
+        newFBitem = snapshot.val().inventoryItem;
         userPantry.push(newFBitem);
         $("#inv-list").append(newFBitem + "<br>");
     });
