@@ -11,6 +11,12 @@ body{
     margin-bottom: 20px;
 }
 
+h1 {
+    color: white;
+    font-size: 5.0rem;
+}
+
 .jumbotron{
     margin-top: 20px;
+    background: #dedede00
 }
