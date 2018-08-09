@@ -11,9 +11,26 @@ body{
     margin-bottom: 20px;
 }
 
+#titleSpacer {
+    margin-top: 3%;
+}
+
+#mainTitle {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+#titleImg{
+    position: relative;
+    text-align: center;
+    display: inline-block
+}
+
 h1 {
     color: white;
-    font-size: 5.0rem;
+    font-size: 3.0rem;
 }
 
 .jumbotron{
