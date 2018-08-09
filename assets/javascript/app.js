@@ -15,15 +15,27 @@ function getPantry() {
     console.log(userPantry);
 }
 
+function addInvetory(event) {
+    event.preventDefault();
+    var addPantryItem = $("#pantry-input").val().trim();
+    database.ref("/Pantry").push({addPantryItem});
+    $("#pantry-input").val("");
+}
+
 $( document ).ready(function() {
 
     getPantry();
 
-    $("#submit").on("click", function(event){
-        event.preventDefault();
-        var addPantryItem = $("#pantry-input").val().trim();
-        database.ref("/Pantry").push({addPantryItem});
-    });
 
 
+});
+
+$("#submit").click( addInvetory );
+    
+$("#pantry-input").keypress( function(event) {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode === 13) {
+        addInvetory(event);  
+    }
+    
 });
