@@ -18,16 +18,15 @@ function getPantry() {
 function addInvetory(event) {
     event.preventDefault();
     var addPantryItem = $("#pantry-input").val().trim();
-    database.ref("/Pantry").push({addPantryItem});
-    $("#pantry-input").val("");
+    var validInput = /\w/.test(addPantryItem);
+    if (validInput) {
+        database.ref("/Pantry").push({addPantryItem});
+        $("#pantry-input").val(""); 
+    }  
 }
 
 $( document ).ready(function() {
-
     getPantry();
-
-
-
 });
 
 $("#submit").click( addInvetory );
@@ -36,6 +35,5 @@ $("#pantry-input").keypress( function(event) {
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if (keycode === 13) {
         addInvetory(event);  
-    }
-    
+    }   
 });
