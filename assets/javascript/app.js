@@ -20,7 +20,9 @@ function addInvetory(event) {
     var addPantryItem = $("#pantry-input").val().trim();
     var validInput = /\w/.test(addPantryItem);
     if (validInput) {
-        database.ref("/Pantry").push({addPantryItem});
+        database.ref("/Pantry").push({
+            inventoryItem: addPantryItem
+        });
         $("#pantry-input").val(""); 
     }  
 }
