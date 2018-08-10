@@ -4,15 +4,28 @@ var database = firebase.database();   // variable for access firebase
 var userPantry = [];    // array to hold food supplies in user's pantry
 
 function getPantry() {
+    $("#pantry-list").empty();
     var newFBitem;  // get newly added item from Firebas
     database.ref("/Pantry").on("child_added", function (snapshot) {
+        var itemAppend = ""; // variable to hold item's HTML
         newFBitem = snapshot.val().inventoryItem;
         pantryItemId = snapshot.key;
+        //console.log(pantryItemId);
         userPantry.push(newFBitem);
-        $("#pantry-list").append("<p>" + newFBitem + "</p><br>");
+        itemAppend += "<p>" + newFBitem + "</p>";
+        itemAppend += "<button type='button' class='btn btn-danger btn-sm' id='" + pantryItemId + "'>delete</button><br>";
+        $("#pantry-list").append(itemAppend);
     });
 
     console.log(userPantry);
+}
+
+function removePantryItem() {
+    //console.log("Click");
+    var foodItemID = $(this).attr("id");
+    //console.log(foodItemID);
+    database.ref("/Pantry").child(foodItemID).remove();
+    getPantry();
 }
 
 function addInventory(event) {
@@ -39,7 +52,6 @@ $("#pantry-input").keypress(function (event) {
         addInventory(event);
     }
 });
-
 
 /**
  * Find recipes based on inventory items
@@ -120,3 +132,5 @@ $("#shopping-list").click(function() {
     getRecipeList(id)
         .then(populateList);
 });
+
+$("#pantry-list").on("click", ".btn", removePantryItem);
