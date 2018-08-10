@@ -110,10 +110,14 @@ function populateList(response) {
     // Display the items you need to buy
 }
 
-$("#getRecipe").click(function() {
-    getInvetoryBasedRecipes()
-        .then(populateRecipes);
+$("#get-fake-recipe").click(function() {
+    mockRecipes.forEach(renderRecipe);
 });
+
+// $("#getRecipe").click(function() {
+//     getInvetoryBasedRecipes()
+//         .then(populateRecipes);
+// });
 
 $("#shopping-list").click(function() {
     getRecipeList(id)
