@@ -100,7 +100,8 @@ function renderRecipe(recipe) {
 
 
 function populateRecipes(response) {
-    response.forEach(renderRecipe);
+    
+    // response.forEach(renderRecipe);
 }
 
 function populateList(response) {
@@ -119,3 +120,21 @@ $("#shopping-list").click(function() {
     getRecipeList(id)
         .then(populateList);
 });
+
+
+
+$(".recipe").click(function(){
+    var id = $(this).attr("data-id");
+    getShoppingListFromRecipe()
+});
+
+function getShoppingListFromRecipe(id){
+    console.log(id);
+
+
+
+}
+
+// click on recipe , make click handler for each recipe
+//populate shopping list
+//use
