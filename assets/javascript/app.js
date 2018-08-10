@@ -7,8 +7,9 @@ function getPantry() {
     var newFBitem;  // get newly added item from Firebas
     database.ref("/Pantry").on("child_added", function (snapshot) {
         newFBitem = snapshot.val().inventoryItem;
+        pantryItemId = snapshot.key;
         userPantry.push(newFBitem);
-        $("#pantry-list").append(newFBitem + "<br>");
+        $("#pantry-list").append("<p>" + newFBitem + "</p><br>");
     });
 
     console.log(userPantry);
@@ -83,10 +84,10 @@ function renderRecipe(recipe) {
         .attr("class", "recipe");
     
     var recipeImg = $("<img>").attr("src", recipe.image);
-    var titleSpan = $("<span>").text(recipe.title);
-    var ingredientsUsedSpan = $("<span>").text("Ingredients Used: " + recipe.usedIngredientCount);
-    var missedIngredientsSpan = $("<span>").text("Missed Ingredients: " + recipe.missedIngredientCount);
-    var likesSpan = $("<span>").text("Likes: " + recipe.likes);
+    var titleSpan = $("<p>").text(recipe.title);
+    var ingredientsUsedSpan = $("<p>").text("Ingredients Used: " + recipe.usedIngredientCount);
+    var missedIngredientsSpan = $("<p>").text("Missed Ingredients: " + recipe.missedIngredientCount);
+    var likesSpan = $("<p>").text("Likes: " + recipe.likes);
     
     recipeDiv
         .append(recipeImg)
