@@ -100,10 +100,10 @@ function renderRecipe(recipe) {
    var recipeImg = $("<img>")
        .attr("src", recipe.image)
        .attr("alt", "Recipe Image")
-       .attr("class", "recipeImage");
+       .attr("class", "recipeImage")
+       .attr("data-id", recipe.id);
 
    var recipeInfoDiv = $("<div>")
-       .attr("data-id", recipe.id)
        .attr("class", "recipe");
 
    var titleSpan = $("<h5>").text(recipe.title);
@@ -170,11 +170,14 @@ function getShoppingListFromRecipe(id){
 function populateShoppingList(response){
     response.extendedIngredients.forEach(renderListItem);
 
+
 }
 
 function renderListItem(item){
+    console.log("hello")
     var ingredientDiv = $("<div>");
     var ingredientP = $("<p>").text(item.name);
+
 
     ingredientDiv.append(ingredientP);
     $("#shopping-list").append(ingredientDiv);
