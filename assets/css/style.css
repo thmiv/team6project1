@@ -9,14 +9,9 @@ body{
         font-size: 28px;
         font-family: 'Modern Antiqua', cursive;
     }
-
-    .header {
-        background-color: #f1f1f1;
-        padding: 30px;
-        text-align: center;
-    }
-
+/* --------------------------------------------------------------------navbar------------------------------------------------------------------------ */
     #navbar {
+        z-index: 4;
         overflow: hidden;
         background-color: #333;
         list-style:none;
@@ -71,7 +66,7 @@ body{
     .sticky+.content {
         padding-top: 60px;
     }
-
+/*  -------------------------------------------------------navbar end------------------------------------------------------------------------ */
 .card {
     margin-bottom: 20px;
     position: static;
@@ -112,4 +107,72 @@ h5 {
 
 .push{
     margin-top: 164px;
+}
+
+/* ------------------------------------- logo ------------------------------------- */
+
+h1.ml8 {
+    font-weight: 900;
+    font-size: 3.0em;
+    color: #fff;
+    width: 3em;
+    height: 3em;
+  }
+  
+  .ml8 .letters-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    height: 1em;
+  }
+  
+  .ml8 .letters {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    line-height: 0.7em;
+    top: -0.2em;
+  }
+  
+  .ml8 .bang {
+    font-size: 1.4em;
+    top: auto;
+  }
+  
+  .ml8 .circle {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+  }
+  
+  .ml8 .circle-dark {
+    width: 2.2em;
+    height: 2.2em;
+    background-color: #697179;
+    border-radius: 3em;
+    z-index: 0;
+  }
+  
+  .ml8 .circle-dark-dashed {
+    border-radius: 2.4em;
+    background-color: transparent;
+    border: 2px dashed #697179;
+    width: 2.3em;
+    height: 2.3em;
+  }
+/* ------------------------------------------------------logo end ------------------------------------------------------------- */
+
+
+
+
+.header {
+    background-color: #f1f1f1;
+    padding: 30px;
+    text-align: center;
 }

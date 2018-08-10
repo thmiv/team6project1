@@ -17,13 +17,21 @@
     <!-- config file -->
     <script src="assets/javascript/config.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Modern+Antiqua" rel="stylesheet">
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 </head>
 
 <body>
 
     <div id="titleSpacer">
         <div class="titleImg">
-            <h1 id="mainTitle" class="text-center">Granny's Pantry</h1>
+            <h1 class="ml8">
+                <span class="letters-container">
+                  <span class="letters letters-left">The Pantry</span>
+                </span>
+                <span class="circle circle-dark"></span>
+                <span class="circle circle-container"><span class="circle circle-dark-dashed"></span></span>
+              </h1>
             <img width="100%" height="275" src="https://www.ocf.berkeley.edu/~sather/wp-content/uploads/2018/01/food--1200x600.jpg" alt="">
         </div>
     </div>
@@ -55,6 +63,7 @@
                 </div>
                 <button class="btn btn-outline-light float-left" type="button" id="addPantryItem">Add Pantry Item</button>
                 <button class="btn btn-outline-light float-right" type="button" id="getRecipe">Get Recipe</button>
+                <button class="btn btn-outline-light float-right" type="button" id="get-fake-recipe">Get Fake Recipe</button>
             </div>
         </div>
         <!-- RECIPES -->
@@ -63,7 +72,7 @@
             <h2 class="card-header text-center" id=recipeTitle>Recipes</h2>
             <div class="card-body">
                 <!-- Recipes list goes in this div -->
-                <div id="recipes-list">
+                <div id="recipes-list" class="d-flex align-content-start flex-wrap">
 
                 </div>
                 <button class="btn btn-outline-light float-right" type="button" id="getShoppingList">Get Shopping List</button>
@@ -97,9 +106,10 @@
     </div>
 </body>
 
-
 <!-- our own JS -->
 <script src="assets/javascript/app.js"></script>
 <script src="assets/javascript/navbar.js"></script>
+<script src="assets/javascript/logo.js"></script>
+
 
 </html>
