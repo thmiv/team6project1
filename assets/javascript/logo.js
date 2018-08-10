@@ -1,4 +1,4 @@
-anime.timeline({loop: true})
+anime.timeline({loop: false})
   .add({
     targets: '.ml8 .circle-white',
     scale: [0, 3],
@@ -29,12 +29,6 @@ anime.timeline({loop: true})
     rotateZ: [45, 15],
     duration: 1200,
     offset: '-=1000'
-  }).add({
-    targets: '.ml8',
-    opacity: 0,
-    duration: 1000,
-    easing: "easeOutExpo",
-    delay: 1400
   });
 
 anime({
