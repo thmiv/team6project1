@@ -8,7 +8,7 @@ function getPantry() {
     database.ref("/Pantry").on("child_added", function (snapshot) {
         newFBitem = snapshot.val().inventoryItem;
         userPantry.push(newFBitem);
-        $("#inv-list").append(newFBitem + "<br>");
+        $("#pantry-list").append(newFBitem + "<br>");
     });
 
     console.log(userPantry);
