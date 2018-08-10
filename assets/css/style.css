@@ -110,11 +110,20 @@ h5 {
 }
 
 .recipeBox{
-    width: 320px;
-    padding:20px;
+    width: 312px;
+    margin:20px;
+    background:darkslategray;
+}
+/* --------------------Font Styling --------------------- */
+
+h5,
+p {
+    text-align: center;
 }
 
-
+p {
+    font-size: 20px;
+}
 
 /* ------------------------------------- logo ------------------------------------- */
 

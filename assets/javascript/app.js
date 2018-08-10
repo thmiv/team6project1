@@ -107,6 +107,7 @@ function renderRecipe(recipe) {
        .attr("class", "recipe");
 
    var titleSpan = $("<h5>").text(recipe.title);
+        titleSpan.attr("class", "text-center") // Centers the title font
    var ingredientsUsedSpan = $("<p>").text("Ingredients Used: " + recipe.usedIngredientCount);
    var missedIngredientsSpan = $("<p>").text("Missed Ingredients: " + recipe.missedIngredientCount);
    var likesSpan = $("<p>").text("Likes: " + recipe.likes);
