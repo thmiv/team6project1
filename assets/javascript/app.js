@@ -100,6 +100,7 @@ function renderRecipe(recipe) {
    var recipeImg = $("<img>")
        .attr("src", recipe.image)
        .attr("alt", "Recipe Image")
+       .attr("class", "recipeImage");
 
    var recipeInfoDiv = $("<div>")
        .attr("data-id", recipe.id)
@@ -144,8 +145,8 @@ $("#shopping-list").click(function() {
 
 $("#pantry-list").on("click", ".btn", removePantryItem);    // removes pantry item on click of its button
 
-$(".recipe").click(function(){
-    console.log("resipeClicked")
+$(document).on("click", ".recipeImage", function(){
+    console.log("recipeClicked")
     var id = $(this).attr("data-id");
     getShoppingListFromRecipe(id)
 
