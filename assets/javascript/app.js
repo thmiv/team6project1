@@ -14,7 +14,7 @@ function getPantry() {
     console.log(userPantry);
 }
 
-function addInvetory(event) {
+function addInventory(event) {
     event.preventDefault();
     var addPantryItem = $("#pantry-input").val().trim();
     var validInput = /\w/.test(addPantryItem);
@@ -30,12 +30,12 @@ $(document).ready(function () {
     getPantry();
 });
 
-$("#submit").click(addInvetory);
+$("#submit").click(addInventory);
 
 $("#pantry-input").keypress(function (event) {
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if (keycode === 13) {
-        addInvetory(event);
+        addInventory(event);
     }
 });
 
