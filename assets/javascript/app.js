@@ -12,8 +12,8 @@ function getPantry() {
         pantryItemId = snapshot.key;
         //console.log(pantryItemId);
         userPantry.push(newFBitem);
-        itemAppend += "<p>" + newFBitem + "</p>";
-        itemAppend += "<button type='button' class='btn btn-danger btn-sm' id='" + pantryItemId + "'>delete</button><br>";
+        itemAppend += "<div class='pantry-entry'>" + newFBitem + "&nbsp;";
+        itemAppend += "<button type='button' class='btn btn-danger btn-sm' id='" + pantryItemId + "'>X</button></div><br>";
         $("#pantry-list").append(itemAppend);
     });
 
