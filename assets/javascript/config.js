@@ -8,3 +8,6 @@
     messagingSenderId: "403216771793"
 };
 firebase.initializeApp(config);
+
+// Mashape Key
+var mashapeKey = "vukyYrHPQrmsha2NRhe46UduOi0jp1cuAdWjsnuvAnizHqDZIh";

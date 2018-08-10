@@ -1,0 +1,29 @@
+Project 1 MVP Planning
+
+1. Start with a general idea
+2. Identify the target audience
+3. Identify the problem that your product will address
+4. Write down the primarry goal of the Product
+5. Identify and prioritize essential User Stories
+
+
+1. We want to facilitate the process of making meals and buying ingredients
+
+2. Anyone who wants to make meals at home 
+    - Younger generations (under 50)
+    - College kids
+    - busy people
+    - middle age white ladies
+    - anyone on a diet
+
+4. Make the facilitate meal preparation and reduce food waste
+
+As a Hungry person, I want TO BE ABLE TO MAKE AN INVENTORY OF MY KITCHEN ITEMS
+so that I can GET THE INGREDIENTS I NEED FOR A RECIPE AND NOT REBUY INGREDIENTS
+
+As a Hungry Person, I want TO BE ABLE TO GET RECIPES BASED ON WHAT WE HAVE IN OUR KITCHEN
+so that I can USE THE INGREDIENTS I HAVE IN MY KITCHEN
+
+As a Hungry Person, I want A SHOPPING LIST GENERATED FROM MY SELECTED RECIPE
+so that I CAN GET THE INGREDIENTS THAT I NEED FROM THE STORE
+
