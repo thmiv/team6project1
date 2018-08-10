@@ -7,6 +7,7 @@ body{
     background: #dedede00;
         margin: 0;
         font-size: 28px;
+        font-family: 'Modern Antiqua', cursive;
     }
 
     .header {
@@ -57,11 +58,6 @@ body{
         color: black;
     }
 
-    #navbar a.active {
-        background-color: #4CAF50;
-        color: white;
-    }
-
     .content {
         padding: 16px;
     }
@@ -79,6 +75,7 @@ body{
 .card {
     margin-bottom: 20px;
     position: static;
+    color: white;
 }
 
 #titleSpacer {
@@ -86,10 +83,7 @@ body{
 }
 
 #mainTitle {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%)
+    font-size: 5.0rem;
 }
 
 #titleImg{
@@ -101,6 +95,10 @@ body{
 h1 {
     color: white;
     font-size: 3.0rem;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .jumbotron{
