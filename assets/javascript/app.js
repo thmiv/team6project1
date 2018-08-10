@@ -38,6 +38,7 @@ function addInventory(event) {
         });
         $("#pantry-input").val("");
     }
+    getPantry();
 }
 
 $(document).ready(function () {
@@ -133,4 +134,4 @@ $("#shopping-list").click(function() {
         .then(populateList);
 });
 
-$("#pantry-list").on("click", ".btn", removePantryItem);
+$("#pantry-list").on("click", ".btn", removePantryItem);    // removes pantry item on click of its button
