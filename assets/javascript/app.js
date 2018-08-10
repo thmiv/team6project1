@@ -4,17 +4,31 @@ var database = firebase.database();   // variable for access firebase
 var userPantry = [];    // array to hold food supplies in user's pantry
 
 function getPantry() {
+    $("#pantry-list").empty();
     var newFBitem;  // get newly added item from Firebas
     database.ref("/Pantry").on("child_added", function (snapshot) {
+        var itemAppend = ""; // variable to hold item's HTML
         newFBitem = snapshot.val().inventoryItem;
+        pantryItemId = snapshot.key;
+        //console.log(pantryItemId);
         userPantry.push(newFBitem);
-        $("#pantry-list").append(newFBitem + "<br>");
+        itemAppend += "<p>" + newFBitem + "</p>";
+        itemAppend += "<button type='button' class='btn btn-danger btn-sm' id='" + pantryItemId + "'>delete</button><br>";
+        $("#pantry-list").append(itemAppend);
     });
 
     console.log(userPantry);
 }
 
-function addInvetory(event) {
+function removePantryItem() {
+    //console.log("Click");
+    var foodItemID = $(this).attr("id");
+    //console.log(foodItemID);
+    database.ref("/Pantry").child(foodItemID).remove();
+    getPantry();
+}
+
+function addInventory(event) {
     event.preventDefault();
     var addPantryItem = $("#pantry-input").val().trim();
     var validInput = /\w/.test(addPantryItem);
@@ -24,27 +38,27 @@ function addInvetory(event) {
         });
         $("#pantry-input").val("");
     }
+    getPantry();
 }
 
 $(document).ready(function () {
     getPantry();
 });
 
-$("#submit").click(addInvetory);
+$("#submit").click(addInventory);
 
 $("#pantry-input").keypress(function (event) {
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if (keycode === 13) {
-        addInvetory(event);
+        addInventory(event);
     }
 });
-
 
 /**
  * Find recipes based on inventory items
  */
 
-function getInvetoryBasedRecipes() {
+function getInventoryBasedRecipes() {
     var ingredientsList = userPantry.join(",");
     console.log(ingredientsList);
 
@@ -83,10 +97,10 @@ function renderRecipe(recipe) {
         .attr("class", "recipe");
     
     var recipeImg = $("<img>").attr("src", recipe.image);
-    var titleSpan = $("<span>").text(recipe.title);
-    var ingredientsUsedSpan = $("<span>").text("Ingredients Used: " + recipe.usedIngredientCount);
-    var missedIngredientsSpan = $("<span>").text("Missed Ingredients: " + recipe.missedIngredientCount);
-    var likesSpan = $("<span>").text("Likes: " + recipe.likes);
+    var titleSpan = $("<p>").text(recipe.title);
+    var ingredientsUsedSpan = $("<p>").text("Ingredients Used: " + recipe.usedIngredientCount);
+    var missedIngredientsSpan = $("<p>").text("Missed Ingredients: " + recipe.missedIngredientCount);
+    var likesSpan = $("<p>").text("Likes: " + recipe.likes);
     
     recipeDiv
         .append(recipeImg)
@@ -100,8 +114,7 @@ function renderRecipe(recipe) {
 
 
 function populateRecipes(response) {
-    
-    // response.forEach(renderRecipe);
+    response.forEach(renderRecipe);
 }
 
 function populateList(response) {
@@ -112,7 +125,7 @@ function populateList(response) {
 }
 
 $("#getRecipe").click(function() {
-    getInvetoryBasedRecipes()
+    getInventoryBasedRecipes()
         .then(populateRecipes);
 });
 
@@ -121,7 +134,7 @@ $("#shopping-list").click(function() {
         .then(populateList);
 });
 
-
+$("#pantry-list").on("click", ".btn", removePantryItem);    // removes pantry item on click of its button
 
 $(".recipe").click(function(){
     var id = $(this).attr("data-id");
@@ -134,7 +147,3 @@ function getShoppingListFromRecipe(id){
 
 
 }
-
-// click on recipe , make click handler for each recipe
-//populate shopping list
-//use

@@ -4,11 +4,78 @@ html{
 }
 
 body{
-    background: #dedede00
-}
+    background: #dedede00;
+        margin: 0;
+        font-size: 28px;
+        font-family: 'Modern Antiqua', cursive;
+    }
+
+    .header {
+        background-color: #f1f1f1;
+        padding: 30px;
+        text-align: center;
+    }
+
+    #navbar {
+        overflow: hidden;
+        background-color: #333;
+        list-style:none;
+        margin:0;
+        padding:0;
+        text-align:center;
+        border-bottom: 1px solid #333;
+    }
+    .navlist{
+        list-style:none;
+        margin:0;
+        padding:0;
+        text-align:center;
+        display:inline;
+        display:inline-block;
+        padding:10px;
+    }
+
+    #navbar a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 10px 10px 10px 10px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .navLocation {
+        margin-bottom: 150px;
+    }
+
+    #pantryNav {
+        margin-top: 50px;
+    }
+
+    #navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .content {
+        padding: 16px;
+    }
+
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+    .sticky+.content {
+        padding-top: 60px;
+    }
 
 .card {
     margin-bottom: 20px;
+    position: static;
+    color: white;
 }
 
 #titleSpacer {
@@ -16,10 +83,7 @@ body{
 }
 
 #mainTitle {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%)
+    font-size: 5.0rem;
 }
 
 #titleImg{
@@ -31,9 +95,21 @@ body{
 h1 {
     color: white;
     font-size: 3.0rem;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .jumbotron{
     margin-top: 20px;
     background: #dedede00
+}
+
+h5 {
+    position: static;
+}
+
+.push{
+    margin-top: 164px;
 }
