@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,8 +18,8 @@
     <!-- config file -->
     <script src="assets/javascript/config.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Modern+Antiqua" rel="stylesheet">
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 </head>
 
 <body>
@@ -27,31 +28,50 @@
         <div class="titleImg">
             <h1 class="ml8">
                 <span class="letters-container">
-                  <span class="letters letters-left">The Pantry</span>
+                    <span class="letters letters-left">The Pantry</span>
                 </span>
                 <span class="circle circle-dark"></span>
-                <span class="circle circle-container"><span class="circle circle-dark-dashed"></span></span>
-              </h1>
+                <span class="circle circle-container">
+                    <span class="circle circle-dark-dashed"></span>
+                </span>
+            </h1>
             <img width="100%" height="275" src="https://www.ocf.berkeley.edu/~sather/wp-content/uploads/2018/01/food--1200x600.jpg" alt="">
         </div>
     </div>
     <div id="navbar">
         <div class="navlist">
-            <a href="#Top">Pantry</a>
-            <a href="#recipeNav">Recipes</a>
-            <a href="#shoppingNav">Shopping</a>
-            <a href="#mapNav">Map</a>
-        </div>
-
-        <div class="input-group">
-            <input id="pantry-input" type="text" class="form-control" aria-label="addPantryItem" placeholder="Insert Pantry Item Here">
-            <div class="input-group-append">
-                <button class="btn btn-outline-light" type="button" id="submit">Submit</button>
-            </div>
+            <ul class="block-menu">
+                <li>
+                    <a href="#Top" class="three-d">
+                        Pantry
+                        <span aria-hidden="true" class="three-d-box">
+                            <span class="front">Pantry</span>
+                            <span class="back">Pantry</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#recipeNav" class="three-d">
+                        Recipes
+                        <span aria-hidden="true" class="three-d-box">
+                            <span class="front">Recipes</span>
+                            <span class="back">Recipes</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#shoppingNav" class="three-d">
+                        Shopping
+                        <span aria-hidden="true" class="three-d-box">
+                            <span class="front">Shopping</span>
+                            <span class="back">Shopping</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
-
-
+    </div>
     <div id="body" class="container">
         <div id="pantryNav"></div>
         <div class="card bg-secondary">
@@ -61,9 +81,12 @@
                 <div id="pantry-list">
 
                 </div>
-                <button class="btn btn-outline-light float-left" type="button" id="addPantryItem">Add Pantry Item</button>
-                <button class="btn btn-outline-light float-right" type="button" id="getRecipe">Get Recipe</button>
+                <button class="btn btn-outline-light float-left" type="button" id="getRecipe">Get Recipe</button>
+                <button class="btn btn-outline-light float-right" type="button" id="addPantryItem">Add Pantry Item</button>
                 <button class="btn btn-outline-light float-right" type="button" id="get-fake-recipe">Get Fake Recipe</button>
+                <div class="input-group">
+                    <input id="pantry-input" type="text" class="form-control text-center" aria-label="addPantryItem" placeholder="Insert Pantry Item Here">
+                </div>
             </div>
         </div>
         <!-- RECIPES -->
@@ -91,18 +114,6 @@
             </div>
         </div>
         <!-- MAP -->
-        <div id="mapNav" class="navLocation"></div>
-        <div class="card bg-secondary">
-            <h2 class="card-header text-center" id=m apTitle>Map</h2>
-            <div class="card-body">
-                <!-- Shopping list goes in this div -->
-                <div id="map-list">
-                
-                </div>
-                <button class="btn btn-outline-light float-right" type="button" id="clearList">Find Local Retailers</button>
-            </div>
-
-        </div>
     </div>
 </body>
 
