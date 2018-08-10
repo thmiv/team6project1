@@ -1,0 +1,24 @@
+Minimum Viable Product & User Stories
+
+1. Start with a general idea
+2. Identify the target audience
+3. Identify the problem that your product will address
+4. Write down the primarry goal of the Product
+5. Identify and prioritize essential User Stories
+
+User Stories 
+"As a _________, I want _________, so that I can _______"
+
+Online code editor with Stack Overflow integration
+Define our audience
+    Developers who need help from Stack Overflow
+
+Switching back and forth between my code editor and stack overflow is annoying
+
+
+As a DEVELOPER, I want TO BE ABLE TO TYPE CODE INTO AN EDITOR so that I can 
+BUILD SMALL FEATURES IN A SANDBOX ENVIRONMENT
+
+As a DEVELOPER, I want TO BE ABLE TO INPUT SEARCH QUERIES so that I can SEARCH
+STACK OVERFLOW WHEN I'M STUCK
+
