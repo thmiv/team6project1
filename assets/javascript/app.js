@@ -79,23 +79,36 @@ function renderRecipe(recipe) {
      *  <span>"Likes"</span>
      * </div>
      */
-    var recipeDiv = $("<div>")
+
+    var recipeCol = $("<div>")
+        .attr("class", "col-md-3")
+    
+    var recipeCard = $("<div>")
+        .attr("class", "card")
+
+    var recipeImg = $("<img>")
+        .attr("class", "card-img-top")
+        .attr("src", recipe.image)
+        .attr("alt", "Recipe Image")
+
+    var recipeInfoDiv = $("<div>")
         .attr("data-id", recipe.id)
         .attr("class", "recipe");
     
-    var recipeImg = $("<img>").attr("src", recipe.image);
     var titleSpan = $("<p>").text(recipe.title);
     var ingredientsUsedSpan = $("<p>").text("Ingredients Used: " + recipe.usedIngredientCount);
     var missedIngredientsSpan = $("<p>").text("Missed Ingredients: " + recipe.missedIngredientCount);
     var likesSpan = $("<p>").text("Likes: " + recipe.likes);
     
-    recipeDiv
-        .append(recipeImg)
+
+
+    recipeInfoDiv
         .append(titleSpan)
         .append(ingredientsUsedSpan)
         .append(missedIngredientsSpan)
         .append(likesSpan);
     
+
     $("#recipes-list").append(recipeDiv);
 }
 
