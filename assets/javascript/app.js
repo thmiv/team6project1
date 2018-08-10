@@ -94,7 +94,7 @@ function renderRecipe(recipe) {
     */
 
    var recipeDiv= $("<div>")
-       .attr("width", "200px");
+       .attr("class", "recipeBox");
 
 
    var recipeImg = $("<img>")
