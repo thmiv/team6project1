@@ -94,18 +94,20 @@ function renderRecipe(recipe) {
     */
 
    var recipeDiv= $("<div>")
-       .attr("width", "200px");
+       .attr("class", "recipeBox");
 
 
    var recipeImg = $("<img>")
        .attr("src", recipe.image)
        .attr("alt", "Recipe Image")
+       .attr("class", "recipeImage");
 
    var recipeInfoDiv = $("<div>")
        .attr("data-id", recipe.id)
        .attr("class", "recipe");
 
    var titleSpan = $("<h5>").text(recipe.title);
+        titleSpan.attr("class", "text-center") // Centers the title font
    var ingredientsUsedSpan = $("<p>").text("Ingredients Used: " + recipe.usedIngredientCount);
    var missedIngredientsSpan = $("<p>").text("Missed Ingredients: " + recipe.missedIngredientCount);
    var likesSpan = $("<p>").text("Likes: " + recipe.likes);
@@ -144,16 +146,39 @@ $("#shopping-list").click(function() {
 
 $("#pantry-list").on("click", ".btn", removePantryItem);    // removes pantry item on click of its button
 
-$(".recipe").click(function(){
+$(document).on("click", ".recipeImage", function(){
+    console.log("recipeClicked")
     var id = $(this).attr("data-id");
-    getShoppingListFromRecipe()
+    getShoppingListFromRecipe(id)
+
 });
 
 function getShoppingListFromRecipe(id){
     console.log(id);
+    var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + id + "/information?includeNutrition=false";
 
+    return $.ajax({
+        url: queryUrl,
+        method: "GET",
+        headers: {
+            "X-Mashape-Key": mashapeKey,
+            "Accept": "application/json"
+        }
 
+    });
+}
 
+function populateShoppingList(response){
+    response.extendedIngredients.forEach(renderListItem);
+
+}
+
+function renderListItem(item){
+    var ingredientDiv = $("<div>");
+    var ingredientP = $("<p>").text(item.name);
+
+    ingredientDiv.append(ingredientP);
+    $("#shopping-list").append(ingredientDiv);
 }
 
 $("#get-fake-recipe").click(function() {
