@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +14,7 @@
     <!-- CSS file -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+    <!-- config file -->
     <script src="assets/javascript/config.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Modern+Antiqua" rel="stylesheet">
     
@@ -36,15 +36,16 @@
             <img width="100%" height="275" src="https://www.ocf.berkeley.edu/~sather/wp-content/uploads/2018/01/food--1200x600.jpg" alt="">
         </div>
     </div>
-    <div id="navbar" class="clearfix">
+    <div id="navbar">
         <div class="navlist">
             <a href="#Top">Pantry</a>
             <a href="#recipeNav">Recipes</a>
             <a href="#shoppingNav">Shopping</a>
             <a href="#mapNav">Map</a>
         </div>
+
         <div class="input-group">
-            <input type="text" class="form-control" aria-label="addPantryItem">
+            <input id="pantry-input" type="text" class="form-control" aria-label="addPantryItem" placeholder="Insert Pantry Item Here">
             <div class="input-group-append">
                 <button class="btn btn-outline-light" type="button" id="submit">Submit</button>
             </div>
@@ -59,28 +60,7 @@
             <div class="card-body">
                 <!-- Pantry list goes in this div -->
                 <div id="pantry-list">
-                    test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
+
                 </div>
                 <button class="btn btn-outline-light float-left" type="button" id="addPantryItem">Add Pantry Item</button>
                 <button class="btn btn-outline-light float-right" type="button" id="getRecipe">Get Recipe</button>
@@ -93,28 +73,7 @@
             <div class="card-body">
                 <!-- Recipes list goes in this div -->
                 <div id="recipes-list">
-                    test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
+
                 </div>
                 <button class="btn btn-outline-light float-right" type="button" id="getShoppingList">Get Shopping List</button>
             </div>
@@ -125,28 +84,8 @@
             <h2 class="card-header text-center" id=s hoppingTitle>Shopping List</h2>
             <div class="card-body">
                 <!-- Shopping list goes in this div -->
-                <div id="shopping-list">test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
+                <div id="shopping-list">
+
                 </div>
                 <button class="btn btn-outline-light float-right" type="button" id="clearList">Clear Shopping List</button>
             </div>
@@ -157,28 +96,8 @@
             <h2 class="card-header text-center" id=m apTitle>Map</h2>
             <div class="card-body">
                 <!-- Shopping list goes in this div -->
-                <div id="map-list">test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
-                    <br>test
+                <div id="map-list">
+                
                 </div>
                 <button class="btn btn-outline-light float-right" type="button" id="clearList">Find Local Retailers</button>
             </div>
