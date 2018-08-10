@@ -8,7 +8,7 @@ function getPantry() {
     database.ref("/Pantry").on("child_added", function (snapshot) {
         newFBitem = snapshot.val().inventoryItem;
         userPantry.push(newFBitem);
-        $("#inv-list").append(newFBitem + "<br>");
+        $("#pantry-list").append(newFBitem + "<br>");
     });
 
     console.log(userPantry);
@@ -48,9 +48,9 @@ function getInvetoryBasedRecipes() {
     var ingredientsList = userPantry.join(",");
     console.log(ingredientsList);
 
-    var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients";
+    var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?";
 
-    queryUrl += $.params({
+    queryUrl += $.param({
         fillIngredients: false,
         ingredients: ingredientsList,
         limitLicense: false,
@@ -62,15 +62,14 @@ function getInvetoryBasedRecipes() {
         method: "GET",
         url: queryUrl,
         headers: {
-            "X-Mashape-Key": "",
+            "X-Mashape-Key": mashapeKey,
             "Accept": "application/json"
         }
     });
 }
 
-function populateRecipes(response) {
-    /**
-     * 
+function renderRecipe(recipe) {
+     /**
      * <div data-id="recipe id">
      *  <img src="image url">
      *  <span>"Recipe Title"</span>
@@ -79,9 +78,29 @@ function populateRecipes(response) {
      *  <span>"Likes"</span>
      * </div>
      */
-
+    var recipeDiv = $("<div>")
+        .attr("data-id", recipe.id)
+        .attr("class", "recipe");
     
+    var recipeImg = $("<img>").attr("src", recipe.image);
+    var titleSpan = $("<span>").text(recipe.title);
+    var ingredientsUsedSpan = $("<span>").text("Ingredients Used: " + recipe.usedIngredientCount);
+    var missedIngredientsSpan = $("<span>").text("Missed Ingredients: " + recipe.missedIngredientCount);
+    var likesSpan = $("<span>").text("Likes: " + recipe.likes);
+    
+    recipeDiv
+        .append(recipeImg)
+        .append(titleSpan)
+        .append(ingredientsUsedSpan)
+        .append(missedIngredientsSpan)
+        .append(likesSpan);
+    
+    $("#recipes-list").append(recipeDiv);
+}
 
+
+function populateRecipes(response) {
+    response.forEach(renderRecipe);
 }
 
 function populateList(response) {
@@ -91,12 +110,12 @@ function populateList(response) {
     // Display the items you need to buy
 }
 
-$("#get-recipes").click(function() {
+$("#getRecipe").click(function() {
     getInvetoryBasedRecipes()
         .then(populateRecipes);
 });
 
-$("#generate-list").click(function() {
+$("#shopping-list").click(function() {
     getRecipeList(id)
         .then(populateList);
 });
