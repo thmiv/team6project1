@@ -45,7 +45,7 @@ $("#pantry-input").keypress(function (event) {
  * Find recipes based on inventory items
  */
 
-function getInvetoryBasedRecipes() {
+function getInventoryBasedRecipes() {
     var ingredientsList = userPantry.join(",");
     console.log(ingredientsList);
 
@@ -112,7 +112,7 @@ function populateList(response) {
 }
 
 $("#getRecipe").click(function() {
-    getInvetoryBasedRecipes()
+    getInventoryBasedRecipes()
         .then(populateRecipes);
 });
 
