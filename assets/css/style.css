@@ -57,6 +57,23 @@ h5 {
     text-align: center;
     display: inline-block
 }
+
+/* ------------------------Recipe boxes --------------------------------*/
+.recipeBox{
+    width: 312px;
+    margin: 20px;
+    background: darkslategray;
+}
+
+h5,
+p {
+    text-align: center;
+}
+
+p {
+    font-size:20px;
+}
+
 /* ------------------------------------- logo ------------------------------------- */
 
 h1.ml8 {
