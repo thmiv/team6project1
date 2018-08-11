@@ -57,6 +57,11 @@ h5 {
     text-align: center;
     display: inline-block
 }
+
+.table {
+    text-align: center;
+    font-size:0.8rem;
+}
 /* ------------------------------------- logo ------------------------------------- */
 
 h1.ml8 {
@@ -128,6 +133,7 @@ h1.ml8 {
     display:inline;
     display:inline-block;
     padding-top:20px;
+    padding-left:20px;
 }
 
 #navbar a {
