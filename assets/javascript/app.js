@@ -5,6 +5,7 @@ var userPantry = [];    // array to hold food supplies in user's pantry
 
 function getPantry() {
     $("#pantry-list").empty();
+    userPantry = [];
     var newFBitem;  // get newly added item from Firebas
     database.ref("/Pantry").on("child_added", function (snapshot) {
         var itemAppend = ""; // variable to hold item's HTML
