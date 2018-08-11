@@ -74,6 +74,12 @@ p {
     font-size:20px;
 }
 
+/* -------------------Capitalize each letter in titles -------------------- */
+.title {
+    text-transform: capitalize;
+}
+
+
 /* ------------------------------------- logo ------------------------------------- */
 
 h1.ml8 {
