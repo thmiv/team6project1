@@ -52,11 +52,32 @@ h5 {
     font-size: 5.0rem;
 }
 
-#titleImg{
-    position: relative;
-    text-align: center;
-    display: inline-block
+.table {
+    font-size:0.8rem;
 }
+
+/* ------------------------Recipe boxes --------------------------------*/
+.recipeBox{
+    width: 312px;
+    margin: 20px;
+    background: darkslategray;
+}
+
+h5,
+p {
+    text-align: center;
+}
+
+p {
+    font-size:20px;
+}
+
+/* -------------------Capitalize each letter in titles -------------------- */
+.title {
+    text-transform: capitalize;
+}
+
+
 /* ------------------------------------- logo ------------------------------------- */
 
 h1.ml8 {
@@ -128,6 +149,7 @@ h1.ml8 {
     display:inline;
     display:inline-block;
     padding-top:20px;
+    padding-left:20px;
 }
 
 #navbar a {
