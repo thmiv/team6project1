@@ -52,16 +52,10 @@ h5 {
     font-size: 5.0rem;
 }
 
-#titleImg{
-    position: relative;
-    text-align: center;
-    display: inline-block
-}
-
 .table {
-    text-align: center;
     font-size:0.8rem;
 }
+
 /* ------------------------------------- logo ------------------------------------- */
 
 h1.ml8 {
