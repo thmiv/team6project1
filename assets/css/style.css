@@ -6,8 +6,6 @@ html{
 body{
     background: #dedede00;
         margin: 0;
-        font-size: 28px;
-        font-family: 'Modern Antiqua', cursive;
 }
 
 h1 {
@@ -46,6 +44,8 @@ h5 {
 
 #titleSpacer {
     margin-top: 3%;
+    font-size: 28px;
+    font-family: 'Modern Antiqua', cursive;
 }
 
 #mainTitle {
@@ -54,6 +54,19 @@ h5 {
 
 .table {
     font-size:0.8rem;
+}
+
+#add-quantity-input {
+    max-width: 20%;
+}
+
+#add-quantity-input {
+    max-width: 10%;
+    margin-left: 13%;
+}
+
+#measurement {
+    margin-left: 1em;
 }
 
 /* ------------------------Recipe boxes --------------------------------*/
