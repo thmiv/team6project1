@@ -28,7 +28,7 @@ h5 {
 }
 
 .card {
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     position: static;
     color: white;
 }
@@ -39,7 +39,7 @@ h5 {
 }
 
 .push{
-    margin-top: 164px;
+    margin-top: 107px;
 }
 
 .carousel-inner {
@@ -161,6 +161,7 @@ h1.ml8 {
     background-color: #333;
     text-align:center;
     border-bottom: 1px solid #333;
+    z-index: 2;
 }
 .navlist{
     list-style:none;
@@ -272,3 +273,23 @@ pointer-events: none;
 box-sizing: border-box;
 }
 /*  -------------------------------------------------------navbar end------------------------------------------------------------------------ */
+/* ----------------------Navbar spacing tricks--------------------------- */
+#recipeNav:before {
+    display: block;
+    content: "";
+    height: 100px;
+    margin: -100px 0 0;
+}
+
+#shoppingNav:before {
+    display: block;
+    content: "";
+    height: 100px;
+    margin: -100px 0 0;
+}
+
+
+/* -----------------------Button Spacing-------------------------------- */
+button{
+    margin: 10px;
+}
