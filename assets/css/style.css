@@ -318,3 +318,15 @@ table {
 img.dblock {
     background-size: contain;
 }
+
+/* -----------------------------Swap Between desktop and mobile carousels ------------------------*/
+/* On mobile */
+@media screen and (min-width: 0px) and (max-width: 940px) {
+    #mobileCarousel {display: block}
+    #desktopCarousel {display: none;}
+}
+/* On Desktop */
+@media screen and (min-width: 941px) {
+    #mobileCarousel {display: none}
+    #desktopCarousel {display: block;}
+}
