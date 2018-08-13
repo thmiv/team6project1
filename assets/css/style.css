@@ -44,6 +44,12 @@ h5 {
     margin-top: 164px;
 }
 
+.carousel-inner {
+    background-color: #333;
+    border-top: #333 solid 5px;
+    border-bottom: #697179 solid 3px;
+}
+
 #titleSpacer {
     margin-top: 3%;
 }
