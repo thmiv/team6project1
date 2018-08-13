@@ -156,15 +156,18 @@ function getInventoryBasedRecipes() {
         });
     }
 
-    function getInputBasedRecipes(ingredientsList) {
-        
-        console.log(ingredientsList);
+    function getInputBasedRecipes() {
+        var ingredientsList2 = "";
+        for (i = 0; i < recipeSearchItems.length; i++){
+            ingredientsList2 += recipeSearchItems[i] + ","
+        }
+        console.log(ingredientsList2);
 
         var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?";
         
         queryUrl += $.param({
             fillIngredients: false,
-            ingredients: ingredientsList,
+            ingredients: ingredientsList2,
             limitLicense: false,
             number: 5,
             ranking: 1
@@ -358,7 +361,11 @@ $(document).on("click", "#clearRecipeList", function(){
     $("#recipe-input").val("");
     addRecipeSearchItem(event);
 });
-
+$(document).on("click", "#searchRecipeList", function(){
+    console.log("Search Clicked");
+    getInputBasedRecipes()
+    .then(populateRecipes);
+});
 /****************************************
  * End Listeners Section
  ***************************************/
