@@ -63,12 +63,8 @@ h5 {
 }
 
 #add-quantity-input {
-    max-width: 20%;
-}
-
-#add-quantity-input {
     max-width: 10%;
-    margin-left: 13%;
+    margin-left: 2%;
 }
 
 #measurement {
