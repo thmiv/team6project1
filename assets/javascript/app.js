@@ -2,6 +2,7 @@
 var database = firebase.database();   // variable for access firebase
 var userPantry = [];    // array to hold food supplies in user's pantry
 var shoppingList = [];
+var recipeSearchItems = [];
 
 /*****************************************
  * Pantry Section
@@ -126,6 +127,54 @@ function getInventoryBasedRecipes() {
         }
     });
 }
+
+// search recipes by user manual input ---------------------
+    function addRecipeSearchItem(event) {
+        event.preventDefault();
+        $('#search-ingredients-list').empty();
+        var addSearchItem = $("#recipe-input").val().trim();
+        
+        var validName = /\w/.test(addSearchItem);
+        
+        if (!validName){
+            $("#recipe-input").val("");
+            $("#recipe-input").css({border: "1px solid red"});
+            $("#recipe-input").attr("placeholder", "Please enter an item");
+        } else {
+            recipeSearchItems.push(addSearchItem);
+            console.log(recipeSearchItems);
+        }
+        recipeSearchItems.forEach(function(RSitem){
+            var rsItemHtml = "";
+            rsItemHtml = "<li>" + RSitem + "</li>";
+            $('#search-ingredients-list').append(rsItemHtml);
+        });
+    }
+
+    function getInputBasedRecipes(ingredientsList) {
+        
+        console.log(ingredientsList);
+
+        var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?";
+        
+        queryUrl += $.param({
+            fillIngredients: false,
+            ingredients: ingredientsList,
+            limitLicense: false,
+            number: 5,
+            ranking: 1
+        });
+        
+        return $.ajax({
+            method: "GET",
+            url: queryUrl,
+            headers: {
+                "X-Mashape-Key": mashapeKey,
+                "Accept": "application/json"
+            }
+        });
+    }
+// -----------------------------------------------------
 
 function populateRecipes(response) {
     response.forEach(renderRecipe);
@@ -280,6 +329,26 @@ $(document).on("click", ".recipeImage", function(){
     var id = $(this).attr("data-id");
     getShoppingListFromRecipe(id)
         .then(populateShoppingList);
+});
+
+// Add recipe ingredient item by pressing enter on the text area
+$("#recipe-input").keypress(function (event) {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode === 13) {
+        addRecipeSearchItem(event);
+    }
+});
+// Add recipe ingredient item by click
+$(document).on("click", "#addRecipeItem", function(){
+    console.log("Add Clicked");
+    addRecipeSearchItem(event);
+});
+// Clear recipe list array
+$(document).on("click", "#clearRecipeList", function(){
+    console.log("Clear Clicked");
+    recipeSearchItems = [];
+    $("#recipe-input").val("");
+    addRecipeSearchItem(event);
 });
 
 /****************************************
