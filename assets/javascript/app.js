@@ -286,3 +286,78 @@ $(document).on("click", ".recipeImage", function(){
 /****************************************
  * End Listeners Section
  ***************************************/
+
+ //Map Section
+
+ function findUserLocation(){
+    var queryUrl = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCVf591AZ-evHODFReCvcQ56eAJZecmLgc";
+
+     $.ajax({
+        url: queryUrl,
+        method: "GET",
+        
+    }).then(response);
+
+ }
+
+ function findUserStores(){
+    var queryUrl = "";
+
+    return $.ajax({
+        url: queryUrl,
+        method: "GET",
+    })
+
+
+ }
+
+ var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('mapDiv'), {
+            center: {lat: 30.3030842,
+            lng: -97.72521689999999},
+            zoom: 8
+        });
+    }
+ 
+    var map;
+    var infowindow;
+
+    function initMap() {
+      var userLocation = {lat: 30.3030842,
+        lng: -97.72521689999999};
+
+      map = new google.maps.Map(document.getElementById('mapDiv'), {
+        center: userLocation,
+        zoom: 15
+      });
+
+      infowindow = new google.maps.InfoWindow();
+      var service = new google.maps.places.PlacesService(map);
+      service.nearbySearch({
+        location: userLocation,
+        radius: 500,
+        type: ['store']
+      }, callback);
+    }
+
+    function callback(results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          createMarker(results[i]);
+        }
+      }
+    }
+
+    function createMarker(place) {
+      var placeLoc = place.geometry.location;
+      var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+      });
+    }

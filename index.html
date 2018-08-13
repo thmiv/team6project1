@@ -27,6 +27,8 @@
         crossorigin="anonymous"></script>
     <!-- font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <!-- Google Maps API -->
+    
 
 </head>
 
@@ -205,13 +207,26 @@
             </div>
         </div>
         <!-- MAP -->
+        <div class="card bg-secondary">
+            <h2 class="card-header text-center" id="map">Map</h2>
+            <div class="card-body">
+                <!-- Shopping list goes in this div -->
+                <br>
+                <!-- Recipes list goes in this div -->
+                <div id="mapDiv" style="width:400px;height:400px;background:gray">
+
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>
 <!-- our own JS -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVf591AZ-evHODFReCvcQ56eAJZecmLgc&callback=initMap"async defer></script>
 <script src="assets/javascript/app.js"></script>
 <script src="assets/javascript/navbar.js"></script>
 <script src="assets/javascript/logo.js"></script>
+
 
 
 </html>
