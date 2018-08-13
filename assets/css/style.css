@@ -1,6 +1,7 @@
 html{
     height: 100%;
-    background-image: url(../images/background.jpg)
+    background: url(../images/background.jpg);
+    
 }
 
 body{
@@ -91,8 +92,9 @@ p {
     font-size:20px;
 }
 
-/* -------------------Capitalize each letter in titles -------------------- */
-.title {
+/* -------------------Capitalize each letter in titles and items-------------------- */
+.title,
+.item {
     text-transform: capitalize;
 }
 
