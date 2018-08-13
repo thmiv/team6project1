@@ -145,7 +145,8 @@ function renderRecipe(recipe) {
        .attr("data-id", recipe.id)
        .attr("src", recipe.image)
        .attr("alt", "Recipe Image")
-       .attr("class", "recipeImage");
+       .attr("class", "recipeImage")
+       .attr("data-id", recipe.id);
 
    var recipeInfoDiv = $("<div>")
        .attr("class", "recipeInfo");
@@ -196,8 +197,6 @@ function getShoppingListFromRecipe(id){
 
 function populateShoppingList(response){
     $("#shoppingList").empty();
-
-    // var neededIngredients = userPantry.map((item) => )
     response.extendedIngredients.forEach(renderListItem);
 }
 
@@ -209,8 +208,6 @@ function renderListItem(item){
         <td id=removeButton>TEST</td>
       </tr>
     */
-
-   console.log("shopping list item: ", item);
 
    var amount = item.measures.us.amount;
    var measure = item.measures.us.unitShort;

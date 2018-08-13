@@ -27,6 +27,8 @@
         crossorigin="anonymous"></script>
     <!-- font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <!-- Google Maps API -->
+    
 
 </head>
 
@@ -163,6 +165,14 @@
         <div class="card bg-secondary">
             <h2 class="card-header text-center" id=recipeTitle>Recipes</h2>
             <div class="card-body">
+                <div class="input-group">
+                    <input id="pantry-input" type="text" class="form-control text-center" aria-label="addPantryItem" placeholder="Insert Recipe Here">
+                    <br>
+                </div>
+                <button class="btn btn-outline-light float-right" type="button" id="clearRecipeList">Clear List</button>
+                <button class="btn btn-outline-light float-left" type="button" id="addRecipeItem">Add Item</button>
+                <!-- Shopping list goes in this div -->
+                <br>
                 <!-- Recipes list goes in this div -->
                 <div id="recipes-list" class="d-flex align-content-start justify-content-center flex-wrap">
 
@@ -174,7 +184,14 @@
         <div class="card bg-secondary">
             <h2 class="card-header text-center" id=shoppingTitle>Shopping List</h2>
             <div class="card-body">
+                <div class="input-group">
+                    <input id="pantry-input" type="text" class="form-control text-center" aria-label="addPantryItem" placeholder="Insert Shopping List Item Here">
+                    <br>
+                </div>
+                <button class="btn btn-outline-light float-right" type="button" id="clearShoppingList">Clear List</button>
+                <button class="btn btn-outline-light float-left" type="button" id="addShoppingItem">Add Item</button>
                 <!-- Shopping list goes in this div -->
+                <br>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -190,6 +207,17 @@
             </div>
         </div>
         <!-- MAP -->
+        <div class="card bg-secondary">
+            <h2 class="card-header text-center" id="map">Map</h2>
+            <div class="card-body">
+                <!-- Shopping list goes in this div -->
+                <br>
+                <!-- Recipes list goes in this div -->
+                <div id="mapDiv" style="width:400px;height:400px;background:gray">
+
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>
@@ -197,6 +225,11 @@
 <script src="assets/javascript/app.js"></script>
 <script src="assets/javascript/navbar.js"></script>
 <script src="assets/javascript/logo.js"></script>
+<script src="assets/javascript/maps.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVf591AZ-evHODFReCvcQ56eAJZecmLgc&libraries=places"async defer></script>
+
+
+
 
 
 </html>

@@ -40,7 +40,7 @@ h5 {
 }
 
 .push{
-    margin-top: 107px;
+    margin-top: 164px;
 }
 
 .carousel-inner {
@@ -304,4 +304,8 @@ button{
 table {
     table-layout: fixed;
     width: 100%;
+}
+/* Map Div */
+#mapDiv{
+    height: 100%;
 }
