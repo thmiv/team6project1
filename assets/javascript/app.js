@@ -1,70 +1,114 @@
-// javascript (Spoontacular Food API)
-
+// Firebase setup
 var database = firebase.database();   // variable for access firebase
 var userPantry = [];    // array to hold food supplies in user's pantry
+var shoppingList = [];
 
-function getPantry() {
-    $("#pantry-list").empty();
-    userPantry = [];
-    var newFBitem;  // get newly added item from Firebas
-    database.ref("/Pantry").on("child_added", function (snapshot) {
-        var itemAppend = ""; // variable to hold item's HTML
-        newFBitem = snapshot.val().inventoryItem;
-        pantryItemId = snapshot.key;
-        //console.log(pantryItemId);
-        userPantry.push(newFBitem);
-        itemAppend += "<div class='pantry-entry'>" + newFBitem + "&nbsp;";
-        itemAppend += "<button type='button' class='btn btn-danger btn-sm' id='" + pantryItemId + "'>X</button></div><br>";
-        $("#pantry-list").append(itemAppend);
-    });
-
-    console.log(userPantry);
-}
-
-function removePantryItem() {
-    //console.log("Click");
-    var foodItemID = $(this).attr("id");
-    //console.log(foodItemID);
-    database.ref("/Pantry").child(foodItemID).remove();
-    getPantry();
-}
+/*****************************************
+ * Pantry Section
+ ****************************************/
 
 function addInventory(event) {
     event.preventDefault();
     var addPantryItem = $("#pantry-input").val().trim();
-    var validInput = /\w/.test(addPantryItem);
-    if (validInput) {
+    var itemQuantity = $("#add-quantity-input").val().trim();
+    
+    var validName = /\w/.test(addPantryItem);
+    var validQuantity= /\d/.test(itemQuantity);
+    
+    if (!validName){
+        $("#pantry-input").val("");
+        $("#pantry-input").css({border: "1px solid red"});
+        $("#pantry-input").attr("placeholder", "Please enter an item");
+    }
+    
+    if (!validQuantity){
+        $("#add-quantity-input").val("");
+        $("#add-quantity-input").css({border: "1px solid red"});
+        $("#add-quantity-input").attr("placeholder", "enter a number");
+    }
+    
+    if (validName && validQuantity) {
+        $("#add-quantity-input").val("");
+        $("#pantry-input").val("");
+        
         database.ref("/Pantry").push({
-            inventoryItem: addPantryItem
+            inventoryItem: addPantryItem,
+            itemQuantity: itemQuantity
         });
         $("#pantry-input").val("");
-    }
-    getPantry();
+    } 
 }
 
-$(document).ready(function () {
-    getPantry();
+function removePantryItem(snapshot) {
+    console.log("remove pantry item");
+    var foodItemID = $(this).attr("data-item");
+    //console.log(foodItemID);
+    database.ref("/Pantry").child(foodItemID).remove();
+}
+
+function renderPantryList(item, key) {
+    /**
+    * <tr>
+        <td id=pantryItem>carrots</td>
+        <td id=itemQuantity>2</td>
+        <td id=removeButton>TEST</td>
+      </tr>
+    */
+
+    var trEl = $("<tr>").attr("class", "pantry-item");
+
+    var nameTd = $("<td>").text(item.inventoryItem);
+    var quantityTd = $("<td>").text(item.itemQuantity);
+    var removeTd = $("<td>");
+
+    var removeBtn = $("<button>")
+        .attr("data-item", key)
+        .attr("class", "delete-pantry-item");
+
+    var fontawesomeTrash = $("<i>").attr("class", "fas fa-trash-alt");
+    removeBtn.append(fontawesomeTrash);
+    removeTd.append(removeBtn);
+
+
+    trEl
+        .append(nameTd)
+        .append(quantityTd)
+        .append(removeTd);
+
+    $("#pantryList").append(trEl);
+}
+
+// If there is any changes to items on firebase,
+// render the updated pantry list
+database.ref("/Pantry").on("value", function(snapshot) {
+    $("#pantryList").empty();
+    userPantry = [];
+
+    snapshot.forEach(function(childSnapshot) {
+        var item = childSnapshot.val();
+        var key = childSnapshot.key;
+
+        userPantry.push(item);
+        renderPantryList(item, key);
+    });
 });
 
-$("#submit").click(addInventory);
+/*****************************************
+ * End Pantry Section
+ ****************************************/
 
-$("#pantry-input").keypress(function (event) {
-    var keycode = (event.keyCode ? event.keyCode : event.which);
-    if (keycode === 13) {
-        addInventory(event);
-    }
-});
 
-/**
- * Find recipes based on inventory items
- */
+/*****************************************
+ * Recipes Section
+ ****************************************/
 
+ // Get recipes based on your kitchen inventory
 function getInventoryBasedRecipes() {
-    var ingredientsList = userPantry.join(",");
+    var ingredientsList = userPantry.map((item) => item.inventoryItem).join(",");
     console.log(ingredientsList);
 
     var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?";
-
+    
     queryUrl += $.param({
         fillIngredients: false,
         ingredients: ingredientsList,
@@ -72,7 +116,7 @@ function getInventoryBasedRecipes() {
         number: 5,
         ranking: 1
     });
-
+    
     return $.ajax({
         method: "GET",
         url: queryUrl,
@@ -83,36 +127,32 @@ function getInventoryBasedRecipes() {
     });
 }
 
+function populateRecipes(response) {
+    response.forEach(renderRecipe);
+}
+
 function renderRecipe(recipe) {
-    /**
-    * <div data-id="recipe id">
-    *  <img src="image url">
-    *  <span>"Recipe Title"</span>
-    *  <span>"Ingredients Used"</span>
-    *  <span>"Missed Ingredients"</span>
-    *  <span>"Likes"</span>
-    * </div>
-    */
-
+    
    var recipeDiv= $("<div>")
-       .attr("width", "200px");
-
+       .attr("class", "recipeBox");
 
    var recipeImg = $("<img>")
+       .attr("data-id", recipe.id)
        .attr("src", recipe.image)
        .attr("alt", "Recipe Image")
        .attr("class", "recipeImage")
        .attr("data-id", recipe.id);
 
    var recipeInfoDiv = $("<div>")
-       .attr("class", "recipe");
+       .attr("class", "recipeInfo");
 
-   var titleSpan = $("<h5>").text(recipe.title);
+   var titleSpan = $("<h5>")
+        .text(recipe.title)
+        .attr("class", "text-center"); // Centers the title font
    var ingredientsUsedSpan = $("<p>").text("Ingredients Used: " + recipe.usedIngredientCount);
    var missedIngredientsSpan = $("<p>").text("Missed Ingredients: " + recipe.missedIngredientCount);
    var likesSpan = $("<p>").text("Likes: " + recipe.likes);
    
-
 
    recipeInfoDiv
        .append(titleSpan)
@@ -127,32 +167,15 @@ function renderRecipe(recipe) {
    $("#recipes-list").append(recipeDiv);
 }
 
+/*****************************************
+ * End Recipes Section
+ ****************************************/
 
-function populateRecipes(response) {
-    response.forEach(renderRecipe);
-}
+/*****************************************
+ * Shopping List Section
+ ****************************************/
 
-function populateList(response) {
-    // Distinguish ingredients we have in our pantry
-    // and items that we need to buy
-
-    // Display the items you need to buy
-}
-
-$("#shopping-list").click(function() {
-    getRecipeList(id)
-        .then(populateList);
-});
-
-$("#pantry-list").on("click", ".btn", removePantryItem);    // removes pantry item on click of its button
-
-$(document).on("click", ".recipeImage", function(){
-    console.log("recipeClicked")
-    var id = $(this).attr("data-id");
-    getShoppingListFromRecipe(id)
-
-});
-
+// Generate a list from a given recipe id
 function getShoppingListFromRecipe(id){
     console.log(id);
     var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + id + "/information?includeNutrition=false";
@@ -164,32 +187,102 @@ function getShoppingListFromRecipe(id){
             "X-Mashape-Key": mashapeKey,
             "Accept": "application/json"
         }
-
     });
 }
 
 function populateShoppingList(response){
+    $("#shoppingList").empty();
     response.extendedIngredients.forEach(renderListItem);
-
-
 }
 
 function renderListItem(item){
-    console.log("hello")
-    var ingredientDiv = $("<div>");
-    var ingredientP = $("<p>").text(item.name);
+    /**
+    * <tr>
+        <td id=pantryItem>carrots</td>
+        <td id=itemQuantity>2</td>
+        <td id=removeButton>TEST</td>
+      </tr>
+    */
+
+   var amount = item.measures.us.amount;
+   var measure = item.measures.us.unitShort;
+
+   var trEl = $("<tr>").attr("class", "shopping-list-item");
+
+   var nameTd = $("<td>").text(item.name);
+   var quantityTd = $("<td>").text(parseInt(amount) + " " + measure);
+   var removeTd = $("<td>");
+
+   var removeBtn = $("<button>")
+       .attr("class", "delete-shopping-list-item");
+
+   var fontawesomeTrash = $("<i>").attr("class", "fas fa-trash-alt");
+   removeBtn.append(fontawesomeTrash);
+   removeTd.append(removeBtn);
 
 
-    ingredientDiv.append(ingredientP);
-    $("#shopping-list").append(ingredientDiv);
+   trEl
+       .append(nameTd)
+       .append(quantityTd)
+       .append(removeTd);
+
+   $("#shoppingList").append(trEl);
 }
 
+/****************************************
+ * End Shopping List Section
+ ***************************************/
+
+
+ /****************************************
+ * Listeners Section
+ ***************************************/
+
+// When the document loads, get the kitchen inventory items
+// from firebase and display them on the pantry section
+
+// Add item to pantry via submit button
+$("#addPantryItem").click(addInventory);
+
+// removes pantry item on click of its button
+$(document).on("click", ".delete-pantry-item", removePantryItem);    
+
+// Add inventory item by pressing enter on the text area
+$("#pantry-input").keypress(function (event) {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode === 13) {
+        addInventory(event);
+    }
+});
+
+$("#add-quantity-input").keypress(function (event) {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode === 13) {
+        addInventory(event);
+    }
+});
+
+// Return a mocked API response from Spoonacular
+// (For testing purposes and not exceeding quotas)
 $("#get-fake-recipe").click(function() {
     mockRecipes.forEach(renderRecipe);
 });
 
-// $("#getRecipe").click(function() {
-//     getInvetoryBasedRecipes()
-//         .then(populateRecipes);
-// });
+// Get recipes based on inventory items
+// by clicking on the Add Pantry Item button
+$("#getRecipe").click(function() {
+    getInventoryBasedRecipes()
+        .then(populateRecipes);
+});
 
+// Generate a shopping list when you click on a recipe
+$(document).on("click", ".recipeImage", function(){
+    console.log("recipeClicked");
+    var id = $(this).attr("data-id");
+    getShoppingListFromRecipe(id)
+        .then(populateShoppingList);
+});
+
+/****************************************
+ * End Listeners Section
+ ***************************************/

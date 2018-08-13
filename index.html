@@ -1,69 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Team 6 Project -temp title-</title>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- CSS Reset -->
     <link rel="stylesheet" href="assets/css/reset.css">
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- CSS file -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
     <!-- config file -->
     <script src="assets/javascript/config.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Modern+Antiqua" rel="stylesheet">
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
 </head>
 
 <body>
 
     <div id="titleSpacer">
-        <div class="titleImg">
-            <h1 class="ml8">
-                <span class="letters-container">
-                  <span class="letters letters-left">The Pantry</span>
-                </span>
-                <span class="circle circle-dark"></span>
-                <span class="circle circle-container"><span class="circle circle-dark-dashed"></span></span>
-              </h1>
-            <img width="100%" height="275" src="https://www.ocf.berkeley.edu/~sather/wp-content/uploads/2018/01/food--1200x600.jpg" alt="">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img class="d-block" width="100%" height="275" src="https://www.ocf.berkeley.edu/~sather/wp-content/uploads/2018/01/food--1200x600.jpg"
+                                alt="First slide">
+                        </div>
+                        <div class="col-sm-4">
+                            <img class="d-block" width="100%" height="275" src="https://img.huffingtonpost.com/asset/585be1aa1600002400bdf2a6.jpeg?ops=scalefit_970_noupscale"
+                                alt="First slide">
+                        </div>
+                        <div class="col-sm-4">
+                            <img class="d-block" width="100%" height="275" src="https://caspiannews.com/media/caspian_news/all_original_photos/1528831479_7183783_1528831390_5761793SFF-Foto-2018-001web2.jpg"
+                                alt="First slide">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img class="d-block" width="100%" height="275" src="https://foodrevolution.org/wp-content/uploads/2018/03/blog-featured_healthy_foods-20180306.jpg"
+                                alt="First slide">
+                        </div>
+                        <div class="col-sm-4">
+                            <img class="d-block" width="100%" height="275" src="http://thearenafitness.com/wp-content/uploads/2017/02/Overeat-Greasy-Foods.jpg"
+                                alt="First slide">
+                        </div>
+                        <div class="col-sm-4">
+                            <img class="d-block" width="100%" height="275" src="https://grist.files.wordpress.com/2017/06/vegetables.jpg?w=1200"
+                                alt="First slide">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
+        <h1 class="ml8">
+            <span class="letters-container">
+                <span class="letters letters-left">The Pantry</span>
+            </span>
+            <span class="circle circle-dark"></span>
+            <span class="circle circle-container">
+                <span class="circle circle-dark-dashed"></span>
+            </span>
+        </h1>
     </div>
     <div id="navbar">
         <div class="navlist">
-            <a href="#Top">Pantry</a>
-            <a href="#recipeNav">Recipes</a>
-            <a href="#shoppingNav">Shopping</a>
-            <a href="#mapNav">Map</a>
-        </div>
-
-        <div class="input-group">
-            <input id="pantry-input" type="text" class="form-control" aria-label="addPantryItem" placeholder="Insert Pantry Item Here">
-            <div class="input-group-append">
-                <button class="btn btn-outline-light" type="button" id="submit">Submit</button>
-            </div>
+            <ul class="block-menu">
+                <li>
+                    <a href="#Top" class="three-d">
+                        Pantry
+                        <span aria-hidden="true" class="three-d-box">
+                            <span class="front">Pantry</span>
+                            <span class="back">Pantry</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#recipeNav" class="three-d">
+                        Recipes
+                        <span aria-hidden="true" class="three-d-box">
+                            <span class="front">Recipes</span>
+                            <span class="back">Recipes</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#shoppingNav" class="three-d">
+                        Shopping
+                        <span aria-hidden="true" class="three-d-box">
+                            <span class="front">Shopping</span>
+                            <span class="back">Shopping</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
-
-
+    </div>
     <div id="body" class="container">
         <div id="pantryNav"></div>
         <div class="card bg-secondary">
             <h2 class="card-header text-center">Pantry</h2>
-            <div class="card-body">
-                <!-- Pantry list goes in this div -->
-                <div id="pantry-list">
-
+            <div id="pantry-container" class="card-body">
+                <div class="input-group">
+                    <input id="pantry-input" type="text" class="form-control text-center" aria-label="addPantryItem" placeholder="Insert Pantry Item Here" pattern="[A-Za-z]" required>
+                    <input id="add-quantity-input" type="text" class="form-control text-center" aria-label="addItemQuantity" placeholder="Qty." pattern="[0-9]" required>
+                    <select id="measurement">
+                        <option value="pieces">pcs</option>
+                        <option value="lbs">lbs</option>
+                        <option value="oz">oz</option>
+                        <option value="cups">cups</option>
+                        <option value="grams">grams</option>
+                        <option value="liters">liters</option>
+                        <option value="milliliters">liters</option>
+                    </select>
+                    <br>
                 </div>
-                <button class="btn btn-outline-light float-left" type="button" id="addPantryItem">Add Pantry Item</button>
                 <button class="btn btn-outline-light float-right" type="button" id="getRecipe">Get Recipe</button>
-                <button class="btn btn-outline-light float-right" type="button" id="get-fake-recipe">Get Fake Recipe</button>
+                <button class="btn btn-outline-light float-left" type="button" id="addPantryItem">Add Item</button>
+                <button class="btn btn-outline-light float-left" type="button" id="get-fake-recipe">Recipe Suggestions</button>
+                <br>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ITEM</th>
+                            <th scope="col">QUANTITY</th>
+                            <th scope="col">REMOVE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pantryList">
+                        
+                    </tbody>
+                </table>
             </div>
         </div>
         <!-- RECIPES -->
@@ -71,11 +163,18 @@
         <div class="card bg-secondary">
             <h2 class="card-header text-center" id=recipeTitle>Recipes</h2>
             <div class="card-body">
+                <div class="input-group">
+                    <input id="pantry-input" type="text" class="form-control text-center" aria-label="addPantryItem" placeholder="Insert Recipe Here">
+                    <br>
+                </div>
+                <button class="btn btn-outline-light float-right" type="button" id="clearRecipeList">Clear List</button>
+                <button class="btn btn-outline-light float-left" type="button" id="addRecipeItem">Add Item</button>
+                <!-- Shopping list goes in this div -->
+                <br>
                 <!-- Recipes list goes in this div -->
-                <div id="recipes-list" class="d-flex align-content-start flex-wrap">
+                <div id="recipes-list" class="d-flex align-content-start justify-content-center flex-wrap">
 
                 </div>
-                <button class="btn btn-outline-light float-right" type="button" id="getShoppingList">Get Shopping List</button>
             </div>
         </div>
         <!-- SHOPPING LIST -->
@@ -83,29 +182,32 @@
         <div class="card bg-secondary">
             <h2 class="card-header text-center" id=s hoppingTitle>Shopping List</h2>
             <div class="card-body">
-                <!-- Shopping list goes in this div -->
-                <div id="shopping-list">
-
+                <div class="input-group">
+                    <input id="pantry-input" type="text" class="form-control text-center" aria-label="addPantryItem" placeholder="Insert Shopping List Item Here">
+                    <br>
                 </div>
-                <button class="btn btn-outline-light float-right" type="button" id="clearList">Clear Shopping List</button>
+                <button class="btn btn-outline-light float-right" type="button" id="clearShoppingList">Clear List</button>
+                <button class="btn btn-outline-light float-left" type="button" id="addShoppingItem">Add Item</button>
+                <!-- Shopping list goes in this div -->
+                <br>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ITEM</th>
+                            <th scope="col">QUANTITY</th>
+                            <th scope="col">REMOVE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="shoppingList">
+                        
+                    </tbody>
+                </table>
             </div>
         </div>
         <!-- MAP -->
-        <div id="mapNav" class="navLocation"></div>
-        <div class="card bg-secondary">
-            <h2 class="card-header text-center" id=m apTitle>Map</h2>
-            <div class="card-body">
-                <!-- Shopping list goes in this div -->
-                <div id="map-list">
-                
-                </div>
-                <button class="btn btn-outline-light float-right" type="button" id="clearList">Find Local Retailers</button>
-            </div>
-
-        </div>
     </div>
-</body>
 
+</body>
 <!-- our own JS -->
 <script src="assets/javascript/app.js"></script>
 <script src="assets/javascript/navbar.js"></script>

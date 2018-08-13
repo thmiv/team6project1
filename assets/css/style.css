@@ -6,85 +6,6 @@ html{
 body{
     background: #dedede00;
         margin: 0;
-        font-size: 28px;
-        font-family: 'Modern Antiqua', cursive;
-    }
-/* --------------------------------------------------------------------navbar------------------------------------------------------------------------ */
-    #navbar {
-        z-index: 4;
-        overflow: hidden;
-        background-color: #333;
-        list-style:none;
-        margin:0;
-        padding:0;
-        text-align:center;
-        border-bottom: 1px solid #333;
-    }
-    .navlist{
-        list-style:none;
-        margin:0;
-        padding:0;
-        text-align:center;
-        display:inline;
-        display:inline-block;
-        padding:10px;
-    }
-
-    #navbar a {
-        float: left;
-        display: block;
-        color: #f2f2f2;
-        text-align: center;
-        padding: 10px 10px 10px 10px;
-        text-decoration: none;
-        font-size: 17px;
-    }
-
-    .navLocation {
-        margin-bottom: 150px;
-    }
-
-    #pantryNav {
-        margin-top: 50px;
-    }
-
-    #navbar a:hover {
-        background-color: #ddd;
-        color: black;
-    }
-
-    .content {
-        padding: 16px;
-    }
-
-    .sticky {
-        position: fixed;
-        top: 0;
-        width: 100%;
-    }
-
-    .sticky+.content {
-        padding-top: 60px;
-    }
-/*  -------------------------------------------------------navbar end------------------------------------------------------------------------ */
-.card {
-    margin-bottom: 20px;
-    position: static;
-    color: white;
-}
-
-#titleSpacer {
-    margin-top: 3%;
-}
-
-#mainTitle {
-    font-size: 5.0rem;
-}
-
-#titleImg{
-    position: relative;
-    text-align: center;
-    display: inline-block
 }
 
 h1 {
@@ -96,18 +17,85 @@ h1 {
     transform: translate(-50%, -50%);
 }
 
+h5 {
+    position: static;
+}
+
+.header {
+    background-color: #f1f1f1;
+    padding: 30px;
+    text-align: center;
+}
+
+.card {
+    margin-bottom: 20px;
+    position: static;
+    color: white;
+}
+
 .jumbotron{
     margin-top: 20px;
     background: #dedede00
 }
 
-h5 {
-    position: static;
-}
-
 .push{
     margin-top: 164px;
 }
+
+.carousel-inner {
+    background-color: #333;
+    border-top: #333 solid 5px;
+    border-bottom: #697179 solid 3px;
+}
+
+#titleSpacer {
+    margin-top: 3%;
+    font-size: 28px;
+    font-family: 'Modern Antiqua', cursive;
+}
+
+#mainTitle {
+    font-size: 5.0rem;
+}
+
+.table {
+    font-size:0.8rem;
+}
+
+#add-quantity-input {
+    max-width: 20%;
+}
+
+#add-quantity-input {
+    max-width: 10%;
+    margin-left: 13%;
+}
+
+#measurement {
+    margin-left: 1em;
+}
+
+/* ------------------------Recipe boxes --------------------------------*/
+.recipeBox{
+    width: 312px;
+    margin: 20px;
+    background: darkslategray;
+}
+
+h5,
+p {
+    text-align: center;
+}
+
+p {
+    font-size:20px;
+}
+
+/* -------------------Capitalize each letter in titles -------------------- */
+.title {
+    text-transform: capitalize;
+}
+
 
 /* ------------------------------------- logo ------------------------------------- */
 
@@ -167,12 +155,120 @@ h1.ml8 {
     height: 2.3em;
   }
 /* ------------------------------------------------------logo end ------------------------------------------------------------- */
-
-
-
-
-.header {
-    background-color: #f1f1f1;
-    padding: 30px;
-    text-align: center;
+/* --------------------------------------------------------------------navbar------------------------------------------------------------------------ */
+#navbar {
+    overflow: hidden;
+    background-color: #333;
+    text-align:center;
+    border-bottom: 1px solid #333;
 }
+.navlist{
+    list-style:none;
+    text-align:center;
+    display:inline;
+    display:inline-block;
+    padding-top:20px;
+    padding-left:20px;
+}
+
+#navbar a {
+    /* float: left; */
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+#pantryNav {
+    margin-top: 20px;
+}
+
+#navbar a:hover {
+    color: black;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.sticky+.content {
+    padding-top: 60px;
+}
+
+/* basic menu styles */
+.block-menu {
+display: block;
+}
+
+.block-menu li {
+display: inline-block;
+}
+
+.block-menu li a {
+color: #fff;
+display: block;
+text-decoration: none;
+font-family: 'Passion One', Arial, sans-serif;
+font-smoothing: antialiased;
+text-transform: uppercase;
+overflow: visible;
+line-height: 20px;
+font-size: 24px;
+padding: 15px 10px;
+}
+
+/* animation domination */
+.three-d {
+perspective: 200px;
+transition: all .07s linear;
+position: relative;
+cursor: pointer;
+}
+/* complete the animation! */
+.three-d:hover .three-d-box, 
+.three-d:focus .three-d-box {
+    transform: translateZ(-25px) rotateX(90deg);
+}
+
+.three-d-box {
+transition: all .3s ease-out;
+transform: translatez(-25px);
+transform-style: preserve-3d;
+pointer-events: none;
+position: absolute;
+top: 10px;
+left: 0;
+display: block;
+width: 100%;
+height: 100%;
+}
+
+/* 
+put the "front" and "back" elements into place with CSS transforms, 
+specifically translation and translatez
+*/
+.front {
+transform: rotatex(0deg) translatez(25px);
+}
+
+.back {
+transform: rotatex(-90deg) translatez(25px);
+color: #ffe7c4;
+}
+
+.front, .back {
+display: block;
+width: 100%;
+height: 100%;
+position: absolute;
+top: 0;
+left: 0;
+background: #333;
+/* padding: 15px 10px; */
+color:white;
+pointer-events: none;
+box-sizing: border-box;
+}
+/*  -------------------------------------------------------navbar end------------------------------------------------------------------------ */
