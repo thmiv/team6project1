@@ -305,3 +305,9 @@ table {
     table-layout: fixed;
     width: 100%;
 }
+
+.delete-pantry-item,
+.delete-shopping-list-item {
+    background: red;
+    border-color: grey;
+}
