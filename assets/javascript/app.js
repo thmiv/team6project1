@@ -48,7 +48,7 @@ function removePantryItem(snapshot) {
 
 function renderPantryList(item, key) {
     /**
-    * <tr>
+    * <tr class="pantry-item">
         <td id=pantryItem>carrots</td>
         <td id=itemQuantity>2</td>
         <td id=removeButton>TEST</td>

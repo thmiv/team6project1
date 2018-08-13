@@ -295,12 +295,15 @@ box-sizing: border-box;
 button{
     margin: 10px;
 }
-
-.firstButton{
-    margin-left:0;
-
+/* Setting the first and last button to have 0 margin on left and right side */
+.firstButton {
+    margin-left: 0;
 }
 
+.lastButton {
+    margin-right: 0; 
+}
+/* Letting the tables equal out on the page */
 table {
     table-layout: fixed;
     width: 100%;
@@ -308,4 +311,25 @@ table {
 /* Map Div */
 #mapDiv{
     height: 100%;
+/* Changing color of the buttons */
+.delete-pantry-item,
+.delete-shopping-list-item {
+    background: red;
+    border-color: grey;
+}
+
+img.dblock {
+    background-size: contain;
+}
+
+/* -----------------------------Swap Between desktop and mobile carousels ------------------------*/
+/* On mobile */
+@media screen and (min-width: 0px) and (max-width: 940px) {
+    #mobileCarousel {display: block}
+    #desktopCarousel {display: none;}
+}
+/* On Desktop */
+@media screen and (min-width: 941px) {
+    #mobileCarousel {display: none}
+    #desktopCarousel {display: block;}
 }
