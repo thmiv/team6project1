@@ -191,6 +191,8 @@ function getShoppingListFromRecipe(id){
 
 function populateShoppingList(response){
     $("#shoppingList").empty();
+
+    // var neededIngredients = userPantry.map((item) => )
     response.extendedIngredients.forEach(renderListItem);
 }
 
@@ -202,6 +204,8 @@ function renderListItem(item){
         <td id=removeButton>TEST</td>
       </tr>
     */
+
+   console.log("shopping list item: ", item);
 
    var amount = item.measures.us.amount;
    var measure = item.measures.us.unitShort;
