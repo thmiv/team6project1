@@ -60,8 +60,11 @@ function renderPantryList(item, key) {
     var nameTd = $("<td>")
         .text(item.inventoryItem)
         .attr("class", "item");
-    var quantityTd = $("<td>").text(item.itemQuantity);
-    var removeTd = $("<td>");
+    var quantityTd = $("<td>")
+        .text(item.itemQuantity)
+        .attr("class", "text-center");
+    var removeTd = $("<td>")
+        .attr("class", "text-right");
 
     var removeBtn = $("<button>")
         .attr("data-item", key)
