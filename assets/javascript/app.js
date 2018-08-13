@@ -147,7 +147,7 @@ function renderRecipe(recipe) {
 
    var titleSpan = $("<h5>")
         .text(recipe.title)
-        .attr("class", "text-center"); // Centers the title font
+        .attr("class", "text-center title"); // Centers the title font
    var ingredientsUsedSpan = $("<p>").text("Ingredients Used: " + recipe.usedIngredientCount);
    var missedIngredientsSpan = $("<p>").text("Missed Ingredients: " + recipe.missedIngredientCount);
    var likesSpan = $("<p>").text("Likes: " + recipe.likes);
@@ -208,7 +208,10 @@ function renderListItem(item){
 
    var trEl = $("<tr>").attr("class", "shopping-list-item");
 
-   var nameTd = $("<td>").text(item.name);
+   var nameTd = $("<td>")
+        .text(item.name)
+        .attr("class", "item")
+
    var quantityTd = $("<td>").text(parseInt(amount) + " " + measure);
    var removeTd = $("<td>");
 

@@ -91,8 +91,9 @@ p {
     font-size:20px;
 }
 
-/* -------------------Capitalize each letter in titles -------------------- */
-.title {
+/* -------------------Capitalize each letter in titles and items-------------------- */
+.title,
+.item {
     text-transform: capitalize;
 }
 
