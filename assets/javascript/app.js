@@ -78,7 +78,8 @@ function renderPantryList(item, key) {
     $("#pantryList").append(trEl);
 }
 
-
+// If there is any changes to items on firebase,
+// render the updated pantry list
 database.ref("/Pantry").on("value", function(snapshot) {
     $("#pantryList").empty();
     userPantry = [];
@@ -189,7 +190,7 @@ function getShoppingListFromRecipe(id){
 }
 
 function populateShoppingList(response){
-    $("#shopping-list").empty();
+    $("#shoppingList").empty();
     response.extendedIngredients.forEach(renderListItem);
 }
 
@@ -252,6 +253,7 @@ $("#pantry-input").keypress(function (event) {
         addInventory(event);
     }
 });
+
 $("#add-quantity-input").keypress(function (event) {
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if (keycode === 13) {
