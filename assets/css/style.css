@@ -295,3 +295,13 @@ box-sizing: border-box;
 button{
     margin: 10px;
 }
+
+.firstButton{
+    margin-left:0;
+
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}

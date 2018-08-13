@@ -219,10 +219,14 @@ function renderListItem(item){
 
    var nameTd = $("<td>")
         .text(item.name)
-        .attr("class", "item")
+        .attr("class", "item");
 
-   var quantityTd = $("<td>").text(parseInt(amount) + " " + measure);
-   var removeTd = $("<td>");
+   var quantityTd = $("<td>")
+        .text(parseInt(amount) + " " + measure)
+        .attr("class", "text-center");
+
+   var removeTd = $("<td>")
+        .attr("class", "text-right");
 
    var removeBtn = $("<button>")
        .attr("class", "delete-shopping-list-item");
