@@ -314,3 +314,7 @@ table {
     background: red;
     border-color: grey;
 }
+
+img.dblock {
+    background-size: contain;
+}
