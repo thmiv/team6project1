@@ -57,7 +57,9 @@ function renderPantryList(item, key) {
 
     var trEl = $("<tr>").attr("class", "pantry-item");
 
-    var nameTd = $("<td>").text(item.inventoryItem);
+    var nameTd = $("<td>")
+        .text(item.inventoryItem)
+        .attr("class", "item");
     var quantityTd = $("<td>").text(item.itemQuantity);
     var removeTd = $("<td>");
 
