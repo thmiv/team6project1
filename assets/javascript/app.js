@@ -134,52 +134,54 @@ function getInventoryBasedRecipes() {
 }
 
 // search recipes by user manual input ---------------------
-    function addRecipeSearchItem(event) {
-        event.preventDefault();
-        $('#search-ingredients-list').empty();
-        var addSearchItem = $("#recipe-input").val().trim();
-        
-        var validName = /\w/.test(addSearchItem);
-        
-        if (!validName){
-            $("#recipe-input").val("");
-            $("#recipe-input").css({border: "1px solid red"});
-            $("#recipe-input").attr("placeholder", "Please enter an item");
-        } else {
-            recipeSearchItems.push(addSearchItem);
-            console.log(recipeSearchItems);
-        }
-        for (i = 0; i < recipeSearchItems.length; i++){
-            renderManualList(recipeSearchItems[i], i)
-        }
+function addRecipeSearchItem(event) {
+    event.preventDefault();
+    $('#search-ingredients-list').empty();
+    var addSearchItem = $("#recipe-input").val().trim();
+    
+    var validName = /\w/.test(addSearchItem);
+    
+    if (!validName){
+        $("#recipe-input").val("");
+        $("#recipe-input").css({border: "1px solid red"});
+        $("#recipe-input").attr("placeholder", "Please enter an item");
+    } else {
+        $("#recipe-input").val("");
+        recipeSearchItems.push(addSearchItem);
+        console.log(recipeSearchItems);
     }
-
-    function getInputBasedRecipes() {
-        var ingredientsList2 = "";
-        for (i = 0; i < recipeSearchItems.length; i++){
-            ingredientsList2 += recipeSearchItems[i] + ","
-        }
-        console.log(ingredientsList2);
-
-        var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?";
-        
-        queryUrl += $.param({
-            fillIngredients: false,
-            ingredients: ingredientsList2,
-            limitLicense: false,
-            number: 5,
-            ranking: 1
-        });
-        
-        return $.ajax({
-            method: "GET",
-            url: queryUrl,
-            headers: {
-                "X-Mashape-Key": mashapeKey,
-                "Accept": "application/json"
-            }
-        });
+    for (i = 0; i < recipeSearchItems.length; i++){
+        renderManualList(recipeSearchItems[i], i)
     }
+}
+
+function getInputBasedRecipes() {
+    var ingredientsList2 = "";
+    for (i = 0; i < recipeSearchItems.length; i++){
+        ingredientsList2 += recipeSearchItems[i] + ","
+    }
+    console.log(ingredientsList2);
+
+    var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?";
+    
+    queryUrl += $.param({
+        fillIngredients: false,
+        ingredients: ingredientsList2,
+        limitLicense: false,
+        number: 5,
+        ranking: 1
+    });
+    
+    return $.ajax({
+        method: "GET",
+        url: queryUrl,
+        headers: {
+            "X-Mashape-Key": mashapeKey,
+            "Accept": "application/json"
+        }
+    });
+}
+
 // Manual search list generation --------------------------------------
 function renderManualList(item, key) {
 
@@ -204,14 +206,52 @@ function renderManualList(item, key) {
 
     $('#search-ingredients-list').append(trEl);
 }
-// Removal of item in manual search list
+
+// Removal of item in manual search list -----------------------------
 function removeSearchItem() {
     var searchItemID = $(this).attr("data-item");
     console.log(searchItemID);
     $("#"+searchItemID).remove();
     recipeSearchItems.splice(searchItemID, 1);
 }
-//-------------------------------------------------------------
+
+// Search for ingredient sub -------------------------------------------------------------
+function getIngredientSub(ingredientFS) {
+
+    var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/substitutes?";
+    
+    queryUrl += $.param({
+        ingredientName: ingredientFS
+    });
+    
+    return $.ajax({
+        method: "GET",
+        url: queryUrl,
+        headers: {
+            "X-Mashape-Key": mashapeKey,
+            "Accept": "application/json"
+        }
+    });
+}
+
+// Display substitution ingredients -------------------------------
+function addSubSearchList(event) {
+    event.preventDefault();
+    $('#alternate-ingredients-list').empty();
+    var addSubItem = $("#sub-input").val().trim();
+    var validSubName = /\w/.test(addSubItem);
+    
+    if (!validSubName){
+        $("#sub-input").val("");
+        $("#sub-input").css({border: "1px solid red"});
+        $("#sub-input").attr("placeholder", "Please enter an item");
+    } else {
+        $("#sub-input").val("");
+        var subListObject = getIngredientSub(addSubItem);
+        console.log(subListObject);
+    }
+}
+// ---------------------------------------------------------------------------------------------------------
 
 function populateRecipes(response) {
     response.forEach(renderRecipe);
@@ -418,11 +458,13 @@ $("#recipe-input").keypress(function (event) {
         addRecipeSearchItem(event);
     }
 });
+
 // Add recipe ingredient item by click
 $(document).on("click", "#addRecipeItem", function(event){
     console.log("Add Clicked");
     addRecipeSearchItem(event);
 });
+
 // Clear recipe list array
 $(document).on("click", "#clearRecipeList", function(event){
     console.log("Clear Clicked");
@@ -430,6 +472,7 @@ $(document).on("click", "#clearRecipeList", function(event){
     $("#recipe-input").val("");
     addRecipeSearchItem(event);
 });
+
 // Search for recipes by manual input
 $(document).on("click", "#searchRecipeList", function(){
     console.log("Search Clicked");
@@ -437,8 +480,15 @@ $(document).on("click", "#searchRecipeList", function(){
     // getInputBasedRecipes()
     // .then(populateRecipes);
 });
+
 // Deletes manual search item
-$(document).on("click", ".delete-search-item", removeSearchItem);   
+$(document).on("click", ".delete-search-item", removeSearchItem);
+
+// Search for substitute ingredient on button click
+$(document).on("click", "#searchForSub", function(event){
+    console.log("Sub Search Clicked");
+    addSubSearchList(event);
+});
 
 /****************************************
  * End Listeners Section
