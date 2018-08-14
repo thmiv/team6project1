@@ -18,14 +18,14 @@ $.ajax({
 function initMap(userLocation) {
 
   map = new google.maps.Map(document.getElementById('mapDiv'), {
-    center: userLocation,
+    center: userLocation, "accuracy": 1903,
     zoom: 15
   });
 
   infowindow = new google.maps.InfoWindow();
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
-    location: userLocation,
+    location: userLocation, "accuracy": 1903,
     radius: 500,
     type: ['store']
   }, callback);
