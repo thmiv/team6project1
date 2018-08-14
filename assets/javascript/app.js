@@ -196,10 +196,35 @@ function getShoppingListFromRecipe(id){
 
 function populateShoppingList(response){
     $("#shoppingList").empty();
-    response.extendedIngredients.forEach(renderListItem);
+    
+
+    // Cross reference our pantry to see what items we already have
+    response.extendedIngredients.forEach(function(listIngredient) {
+        
+        var neededAmount;
+
+        // Check if the shopping list item matches any of our pantry items
+        var matchedIngredient = userPantry.find(function(pantryItem) {
+            var re = new RegExp(listIngredient.name + "*", 'i');
+            
+            // keep track of how much we need to buy vs 
+            // how much of that item we already have
+            neededAmount = listIngredient.amount - pantryItem.itemQuantity;
+
+            return re.test(pantryItem.inventoryItem);
+        });
+        
+        if (matchedIngredient && neededAmount > 0) {
+            renderListItem(listIngredient, neededAmount);
+        }
+
+        if (!matchedIngredient) {
+            renderListItem(listIngredient);
+        }
+    });
 }
 
-function renderListItem(item){
+function renderListItem(item, amount){
     /**
     * <tr>
         <td id=pantryItem>carrots</td>
@@ -208,7 +233,7 @@ function renderListItem(item){
       </tr>
     */
 
-   var amount = item.measures.us.amount;
+   var amountValue = amount || item.measures.us.amount;
    var measure = item.measures.us.unitShort;
 
    var trEl = $("<tr>").attr("class", "shopping-list-item");
@@ -218,7 +243,7 @@ function renderListItem(item){
         .attr("class", "item");
 
    var quantityTd = $("<td>")
-        .text(parseInt(amount) + " " + measure)
+        .text(parseInt(amountValue) + " " + measure)
         .attr("class", "text-center");
 
    var removeTd = $("<td>")
