@@ -358,7 +358,6 @@ $(document).on("click", ".view-recipe", function() {
             "Accept": "application/json"
         }
     }).then(function(response) {
-        console.log(recipeUrl);
         recipeUrl = response.sourceUrl;
         var recipeIframe = $("<iframe>")
             .attr("src", recipeUrl)
