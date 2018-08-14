@@ -263,7 +263,6 @@ function renderRecipe(recipe) {
        .attr("class", "recipeBox");
 
    var recipeImg = $("<img>")
-       .attr("data-id", recipe.id)
        .attr("src", recipe.image)
        .attr("alt", "Recipe Image")
        .attr("class", "recipeImage");
@@ -277,13 +276,31 @@ function renderRecipe(recipe) {
    var ingredientsUsedSpan = $("<p>").text("Ingredients Used: " + recipe.usedIngredientCount);
    var missedIngredientsSpan = $("<p>").text("Missed Ingredients: " + recipe.missedIngredientCount);
    var likesSpan = $("<p>").text("Likes: " + recipe.likes);
+   var buttonsDiv = $("<div>").css({"display": "flex", "justify-content": "center"});
+   var viewRecipeBtn = $("<button>")
+        .attr("data-id", recipe.id)
+        .attr("data-target", "#recipe-modal")
+        .attr("class", "view-recipe btn btn-success")
+        .attr("type", "button")
+        .text("View Recipe");
+   
+    var getShoppingListBtn = $("<button>")
+        .attr("data-id", recipe.id)
+        .attr("class", "get-shopping-list btn btn-primary")
+        .attr("type", "button")
+        .text("Shopping List");
+
+    buttonsDiv
+        .append(viewRecipeBtn)
+        .append(getShoppingListBtn);
    
 
    recipeInfoDiv
        .append(titleSpan)
        .append(ingredientsUsedSpan)
        .append(missedIngredientsSpan)
-       .append(likesSpan);
+       .append(likesSpan)
+       .append(buttonsDiv);
    
    recipeDiv
        .append(recipeImg)
@@ -326,7 +343,13 @@ function populateShoppingList(response){
 
         // Check if the shopping list item matches any of our pantry items
         var matchedIngredient = userPantry.find(function(pantryItem) {
-            var re = new RegExp(listIngredient.name + "*", 'i');
+
+
+            var tokenizedLIName = listIngredient.name.split(" ");
+            var re;
+            tokenizedLIName.forEach(function(token) {
+                re = new RegExp(token + "*", 'i');    
+            });
             
             // keep track of how much we need to buy vs 
             // how much of that item we already have
@@ -469,7 +492,7 @@ $("#getRecipe").click(function() {
 });
 
 // Generate a shopping list when you click on a recipe
-$(document).on("click", ".recipeImage", function(){
+$(document).on("click", ".get-shopping-list", function(){
     console.log("recipeClicked");
     var id = $(this).attr("data-id");
     getShoppingListFromRecipe(id)
@@ -513,6 +536,31 @@ $(document).on("click", ".delete-search-item", removeSearchItem);
 $(document).on("click", "#searchForSub", function(event){
     console.log("Sub Search Clicked");
     addSubSearchList(event);
+$(document).on("click", ".view-recipe", function() {
+    $("#recipe-modal").modal("show");
+    $("#recipe-modal-body").empty();
+
+    var recipeId = $(this).attr("data-id");
+    var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeId + "/information?includeNutrition=false";
+    var recipeUrl;
+    
+    $.ajax({ 
+        method: "GET", 
+        url: queryUrl,
+        headers: {
+            "X-Mashape-Key": mashapeKey,
+            "Accept": "application/json"
+        }
+    }).then(function(response) {
+        recipeUrl = response.sourceUrl;
+        var recipeIframe = $("<iframe>")
+            .attr("src", recipeUrl)
+            .attr("width", "550")
+            .attr("height", "550")
+            .css({ width: "100%" });
+        $("#recipe-modal-body").append(recipeIframe);
+    });
+
 });
 
 /****************************************
