@@ -268,3 +268,10 @@ pointer-events: none;
 box-sizing: border-box;
 }
 /*  -------------------------------------------------------navbar end------------------------------------------------------------------------ */
+
+@media screen and (max-width: 575px) {
+ 
+    #hideOnMobile {
+        display: none;
+    }
+ }
