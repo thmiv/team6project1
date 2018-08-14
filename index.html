@@ -163,12 +163,51 @@
         <div class="card bg-secondary">
             <h2 class="card-header text-center" id=recipeTitle>Recipes</h2>
             <div class="card-body">
-                <!-- Recipes list goes in this div -->
-                <div id="recipes-list" class="d-flex align-content-start justify-content-center flex-wrap">
-
+                <!-- TABBED NAV ELEMENT  -->
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Recipes by pantry</a>
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Manual Ingredient Search</a>
+                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Search for Ingredient Substitute</a>
                 </div>
+            </nav>
+                  <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                         <!-- Recipe list by pantry goes in here  -->
+                        <div id="recipes-list" class="d-flex align-content-start justify-content-center flex-wrap">
+                        </div>
+                    </div>
+                        <!-- Manual ingredient entry for recipe search here  -->
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="card bg-secondary"> 
+                            <br>
+                            <div class="input-group">
+                                <input id="recipe-input" type="text" class="form-control text-center" aria-label="addPantryItem" placeholder="Add Single Recipe Ingredient">
+                                <br>
+                            </div>                         
+                            <div id="search-ingredients-list"></div>
+                            <button class="btn btn-outline-light float-left" type="button" id="addRecipeItem">Add Item</button>
+                            <button class="btn btn-outline-light float-right" type="button" id="clearRecipeList">Clear List</button> 
+                            <button class="btn btn-outline-light float-left" type="button" id="searchRecipeList">Search for Recipes</button> 
+                        </div>
+                    </div>
+                        <!-- Third tab in NAV element  -->
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <div class="card bg-secondary"> 
+                            <br>
+                            <div class="input-group">
+                                <input id="sub-input" type="text" class="form-control text-center" aria-label="addSubItem" placeholder="Add Substitutable Ingredient">
+                                <br>
+                            </div>                         
+                            <ul id="alternate-ingredients-list">
+                            </ul>
+                            <button class="btn btn-outline-light float-left" type="button" id="searchForSub">Search for Alternates</button> 
+                        </div>
+                    </div>
+                  </div>
             </div>
         </div>
+        
         <!-- SHOPPING LIST -->
         <div id="shoppingNav" class="navLocation"></div>
         <div class="card bg-secondary">
@@ -191,6 +230,9 @@
         </div>
         <!-- MAP -->
     </div>
+
+    <br><br>
+      <br> <br> <br> <br>
 
 </body>
 <!-- our own JS -->
