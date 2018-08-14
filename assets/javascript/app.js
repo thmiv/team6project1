@@ -247,8 +247,22 @@ function addSubSearchList(event) {
         $("#sub-input").attr("placeholder", "Please enter an item");
     } else {
         $("#sub-input").val("");
-        var subListObject = getIngredientSub(addSubItem);
-        console.log(subListObject);
+        getIngredientSub(addSubItem)
+            .then(function(response){
+                console.log(response);
+                console.log(response.status);
+                if (response.status == "failure"){
+                    $("#alternate-ingredients-list").append("Coud not fund a substitute for that item");
+                } else {
+                    response.substitutes.forEach(function(substitute){
+                        var subTREL = $("<tr>").attr("class", "alternates");
+                        var subTDEL = $("<td>").text(substitute);                 
+                        subTREL
+                            .append(subTDEL);
+                        $("#alternate-ingredients-list").append(subTREL);
+                    });
+                }
+            })
     }
 }
 // ---------------------------------------------------------------------------------------------------------
@@ -488,6 +502,13 @@ $(document).on("click", ".delete-search-item", removeSearchItem);
 $(document).on("click", "#searchForSub", function(event){
     console.log("Sub Search Clicked");
     addSubSearchList(event);
+});
+// Search for substitute ingredient on ENTER press
+$("#sub-input").keypress(function (event) {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode === 13) {
+        addSubSearchList(event);
+    }
 });
 
 /****************************************
