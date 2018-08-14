@@ -224,7 +224,7 @@ function populateShoppingList(response){
     });
 }
 
-function renderListItem(item, amount){
+function renderListItem(item, amountValue){
     /**
     * <tr>
         <td id=pantryItem>carrots</td>
@@ -233,7 +233,7 @@ function renderListItem(item, amount){
       </tr>
     */
 
-   var amountValue = amount || item.measures.us.amount;
+   var amount = amountValue || item.measures.us.amount;
    var measure = item.measures.us.unitShort;
 
    var trEl = $("<tr>").attr("class", "shopping-list-item");
@@ -243,7 +243,7 @@ function renderListItem(item, amount){
         .attr("class", "item");
 
    var quantityTd = $("<td>")
-        .text(parseInt(amountValue) + " " + measure)
+        .text(parseInt(amount) + " " + measure)
         .attr("class", "text-center");
 
    var removeTd = $("<td>")
