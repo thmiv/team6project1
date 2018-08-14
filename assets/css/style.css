@@ -1,6 +1,7 @@
 html{
     height: 100%;
-    background-image: url(../images/background.jpg)
+    background: url(../images/background.jpg);
+    
 }
 
 body{
@@ -28,7 +29,7 @@ h5 {
 }
 
 .card {
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     position: static;
     color: white;
 }
@@ -39,7 +40,7 @@ h5 {
 }
 
 .push{
-    margin-top: 164px;
+    margin-top: 107px;
 }
 
 .carousel-inner {
@@ -87,8 +88,9 @@ p {
     font-size:20px;
 }
 
-/* -------------------Capitalize each letter in titles -------------------- */
-.title {
+/* -------------------Capitalize each letter in titles and items-------------------- */
+.title,
+.item {
     text-transform: capitalize;
 }
 
@@ -157,6 +159,7 @@ h1.ml8 {
     background-color: #333;
     text-align:center;
     border-bottom: 1px solid #333;
+    z-index: 2;
 }
 .navlist{
     list-style:none;
@@ -268,6 +271,39 @@ pointer-events: none;
 box-sizing: border-box;
 }
 /*  -------------------------------------------------------navbar end------------------------------------------------------------------------ */
+/* ----------------------Navbar spacing tricks--------------------------- */
+#recipeNav:before {
+    display: block;
+    content: "";
+    height: 100px;
+    margin: -100px 0 0;
+}
+
+#shoppingNav:before {
+    display: block;
+    content: "";
+    height: 100px;
+    margin: -100px 0 0;
+}
+
+
+/* -----------------------Button Spacing-------------------------------- */
+button{
+    margin: 10px;
+}
+
+.firstButton{
+    margin-left:0;
+
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+
+/* -----------------------carousel mobile fix ---------------------- */
 
 @media screen and (max-width: 575px) {
  
@@ -275,3 +311,5 @@ box-sizing: border-box;
         display: none;
     }
  }
+
+ /* -----------------------carousel mobile fix end ---------------------- */
