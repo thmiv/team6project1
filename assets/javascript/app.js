@@ -75,7 +75,6 @@ function renderPantryList(item, key) {
     removeBtn.append(fontawesomeTrash);
     removeTd.append(removeBtn);
 
-
     trEl
         .append(nameTd)
         .append(quantityTd)
@@ -196,13 +195,18 @@ function renderManualList(item, key) {
         .attr("data-item", key)
         .attr("class", "delete-search-item");
 
+    var btnTD = $("<td>")
+        .html(removeBtn)
+        .attr("data-item", key)
+        .attr("class", "is-item-btn text-right");
+
     var fontawesomeTrash = $("<i>").attr("class", "fas fa-trash-alt");
     removeBtn.append(fontawesomeTrash);
 
 
     trEl
         .append(nameTd)
-        .append(removeBtn)
+        .append(btnTD)
 
     $('#search-ingredients-list').append(trEl);
 }
@@ -265,7 +269,68 @@ function addSubSearchList(event) {
             })
     }
 }
-// ---------------------------------------------------------------------------------------------------------
+// Render recipes for manual input ----------------------------------------------------
+
+function populateManRecipes(response) {
+    $("#recipes-list").empty();
+    response.forEach(renderRecipe);
+}
+
+function renderManRecipe(recipe) {
+
+    var recipeDiv= $("<div>")
+        .attr("class", "recipeBox");
+ 
+    var recipeImg = $("<img>")
+        .attr("data-id", recipe.id)
+        .attr("src", recipe.image)
+        .attr("alt", "Recipe Image")
+        .attr("class", "recipeImage")
+        .attr("data-id", recipe.id);
+ 
+    var recipeInfoDiv = $("<div>")
+        .attr("class", "recipeInfo");
+ 
+    var titleSpan = $("<h5>")
+         .text(recipe.title)
+         .attr("class", "text-center title"); // Centers the title font
+    var ingredientsUsedSpan = $("<p>").text("Ingredients Used: " + recipe.usedIngredientCount);
+    var missedIngredientsSpan = $("<p>").text("Missed Ingredients: " + recipe.missedIngredientCount);
+    var likesSpan = $("<p>").text("Likes: " + recipe.likes);
+    var buttonsDiv = $("<div>").css({"display": "flex", "justify-content": "center"});
+    var viewRecipeBtn = $("<button>")
+         .attr("data-id", recipe.id)
+         .attr("data-target", "#recipe-modal")
+         .attr("class", "view-recipe btn btn-success")
+         .attr("type", "button")
+         .text("View Recipe");
+    
+     var getShoppingListBtn = $("<button>")
+         .attr("data-id", recipe.id)
+         .attr("class", "get-shopping-list btn btn-primary")
+         .attr("type", "button")
+         .text("Shopping List");
+ 
+     buttonsDiv
+         .append(viewRecipeBtn)
+         .append(getShoppingListBtn);
+    
+ 
+    recipeInfoDiv
+        .append(titleSpan)
+        .append(ingredientsUsedSpan)
+        .append(missedIngredientsSpan)
+        .append(likesSpan)
+        .append(buttonsDiv);
+    
+    recipeDiv
+        .append(recipeImg)
+        .append(recipeInfoDiv);
+ 
+    $("#show-man-recipe").append(recipeDiv);
+ }
+
+// --------------------------------------------------------------
 
 function populateRecipes(response) {
     $("#recipes-list").empty();
@@ -456,14 +521,14 @@ function getIngredientParse(ingredientItem) {
 }
 
 function getIngredientImage(parseObject){
-    var imageUrl;
+    var imageUrl = "";
     getIngredientParse(parseObject)
 		.then(function(response){
 			console.log(response);
             imageUrl = "https://spoonacular.com/cdn/ingredients_100x100/" + response[0].image;
             console.log(imageUrl);
+            return imageUrl;
         });
-    return imageUrl;
 }
 
  /****************************************
@@ -546,9 +611,9 @@ $(document).on("click", "#clearRecipeList", function(event){
 $(document).on("click", "#searchRecipeList", function(){
     console.log("Search Clicked");
     $("#recipes-list").empty();
-    mockRecipes.forEach(renderRecipe);
+    mockRecipes.forEach(renderManRecipe);
     // getInputBasedRecipes()
-    // .then(populateRecipes);
+    // .then(populateManRecipes);
 });
 
 // Deletes manual search item
