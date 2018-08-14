@@ -1,7 +1,6 @@
 html{
     height: 100%;
     background: url(../images/background.jpg);
-    
 }
 
 body{
@@ -40,7 +39,7 @@ h5 {
 }
 
 .push{
-    margin-top: 164px;
+    margin-top: 107px;
 }
 
 .carousel-inner {
@@ -65,15 +64,11 @@ h5 {
 
 #add-quantity-input {
     max-width: 20%;
-}
-
-#add-quantity-input {
-    max-width: 10%;
-    margin-left: 13%;
+    margin-left: 2%;
 }
 
 #measurement {
-    margin-left: 1em;
+    margin-left: 2%;
 }
 
 /* ------------------------Recipe boxes --------------------------------*/
@@ -308,9 +303,19 @@ table {
     table-layout: fixed;
     width: 100%;
 }
+
+/* -----------------------Tabbed NAV window-------------------------------- */
+.nav-item {
+    color: #ffffff;
+}
 /* Map Div */
 #mapDiv{
     height: 100%;
+    color: black;
+}
+
+
+/* -----------------------carousel mobile fix end ---------------------- */
 /* Changing color of the buttons */
 .delete-pantry-item,
 .delete-shopping-list-item {
@@ -322,14 +327,11 @@ img.dblock {
     background-size: contain;
 }
 
-/* -----------------------------Swap Between desktop and mobile carousels ------------------------*/
-/* On mobile */
-@media screen and (min-width: 0px) and (max-width: 940px) {
-    #mobileCarousel {display: block}
-    #desktopCarousel {display: none;}
-}
-/* On Desktop */
-@media screen and (min-width: 941px) {
-    #mobileCarousel {display: none}
-    #desktopCarousel {display: block;}
+/* -----------------------carousel mobile fix ---------------------- */
+
+@media screen and (max-width: 992px) {
+ 
+    #hideOnMobile {
+        display: none;
+    }
 }

@@ -18,15 +18,15 @@ $.ajax({
 function initMap(userLocation) {
 
   map = new google.maps.Map(document.getElementById('mapDiv'), {
-    center: userLocation,
+    center: userLocation, "accuracy": 50,
     zoom: 15
   });
 
   infowindow = new google.maps.InfoWindow();
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
-    location: userLocation,
-    radius: 500,
+    location: userLocation, "accuracy": 50,
+    radius: 800,
     type: ['store']
   }, callback);
 }
@@ -47,6 +47,8 @@ function createMarker(place) {
   });
 
   google.maps.event.addListener(marker, 'click', function() {
+    infowindow = new google.maps.InfoWindow();
+    console.log(infowindow);
     infowindow.setContent(place.name);
     infowindow.open(map, this);
   });
