@@ -277,9 +277,11 @@ function renderRecipe(recipe) {
        .attr("class", "recipeBox");
 
    var recipeImg = $("<img>")
+       .attr("data-id", recipe.id)
        .attr("src", recipe.image)
        .attr("alt", "Recipe Image")
-       .attr("class", "recipeImage");
+       .attr("class", "recipeImage")
+       .attr("data-id", recipe.id);
 
    var recipeInfoDiv = $("<div>")
        .attr("class", "recipeInfo");

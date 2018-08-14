@@ -310,3 +310,8 @@ table {
 .nav-item {
     color: #ffffff;
 }
+/* Map Div */
+#mapDiv{
+    height: 100%;
+    color: black;
+}
