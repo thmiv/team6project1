@@ -189,6 +189,7 @@
                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Recipes by pantry</a>
                     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Manual Ingredient Search</a>
                     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Search for Ingredient Substitute</a>
+                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#map-tab" role="tab" aria-controls="nav-contact" aria-selected="false">Search Stores Near You</a>
                 </div>
             </nav>
                   <div class="tab-content" id="nav-tabContent">
@@ -197,7 +198,7 @@
                         <div id="recipes-list" class="d-flex align-content-start justify-content-center flex-wrap">
                         </div>
                     </div>
-                        <!-- Manual ingredient entry for recipe search here  -->
+                    <!-- Manual ingredient entry for recipe search here  -->
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <div class="card bg-secondary"> 
                             <br>
@@ -213,7 +214,7 @@
                             <button class="btn btn-outline-light float-left" type="button" id="searchRecipeList">Search for Recipes</button> 
                         </div>
                     </div>
-                        <!-- Third tab in NAV element  -->
+                    <!-- Third tab in NAV element  -->
                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                         <div class="card bg-secondary"> 
                             <br>
@@ -228,7 +229,12 @@
                             </table>
                         </div>
                     </div>
-                  </div>
+                    <!-- map tab -->
+                    <div class="tab-pane fade" id="map-tab" role="tabpanel" aria-labelledby="map-tab">
+                         <!-- Recipe list by pantry goes in here  -->
+                        <div id="mapDiv" style="width:400px;height:400px;background:gray"></div>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -250,18 +256,6 @@
                         
                     </tbody>
                 </table>
-            </div>
-        </div>
-        <!-- MAP -->
-        <div class="card bg-secondary">
-            <h2 class="card-header text-center" id="map">Map</h2>
-            <div class="card-body">
-                <!-- Shopping list goes in this div -->
-                <br>
-                <!-- Recipes list goes in this div -->
-                <div id="mapDiv" style="width:400px;height:400px;background:gray">
-
-                </div>
             </div>
         </div>
     </div>
