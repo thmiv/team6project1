@@ -305,3 +305,8 @@ table {
     table-layout: fixed;
     width: 100%;
 }
+
+/* -----------------------Tabbed NAV window-------------------------------- */
+.nav-item {
+    color: #ffffff;
+}
