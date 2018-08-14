@@ -38,15 +38,15 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-md-12 col-lg-4">
                             <img class="d-block" width="100%" height="275" src="https://www.ocf.berkeley.edu/~sather/wp-content/uploads/2018/01/food--1200x600.jpg"
                                 alt="First slide">
                         </div>
-                        <div class="col-sm-4" id="hideOnMobile">
+                        <div class="col-lg-4" id="hideOnMobile">
                             <img class="d-block" width="100%" height="275" src="https://img.huffingtonpost.com/asset/585be1aa1600002400bdf2a6.jpeg?ops=scalefit_970_noupscale"
                                 alt="First slide">
                         </div>
-                        <div class="col-sm-4" id="hideOnMobile">
+                        <div class="col-lg-4" id="hideOnMobile">
                             <img class="d-block" width="100%" height="275" src="https://caspiannews.com/media/caspian_news/all_original_photos/1528831479_7183783_1528831390_5761793SFF-Foto-2018-001web2.jpg"
                                 alt="First slide">
                         </div>
@@ -54,15 +54,15 @@
                 </div>
                 <div class="carousel-item">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-md-12 col-lg-4">
                             <img class="d-block" width="100%" height="275" src="https://foodrevolution.org/wp-content/uploads/2018/03/blog-featured_healthy_foods-20180306.jpg"
                                 alt="First slide">
                         </div>
-                        <div class="col-sm-4" id="hideOnMobile">
+                        <div class="col-lg-4" id="hideOnMobile">
                             <img class="d-block" width="100%" height="275" src="http://thearenafitness.com/wp-content/uploads/2017/02/Overeat-Greasy-Foods.jpg"
                                 alt="First slide">
                         </div>
-                        <div class="col-sm-4" id="hideOnMobile">
+                        <div class="col-lg-4" id="hideOnMobile">
                             <img class="d-block" width="100%" height="275" src="https://grist.files.wordpress.com/2017/06/vegetables.jpg?w=1200" alt="First slide">
                         </div>
                     </div>
@@ -94,17 +94,17 @@
                     <a href="#Top" class="three-d">
                         Pantry
                         <span aria-hidden="true" class="three-d-box">
-                            <span class="front">Pantry Items</span>
-                            <span class="back">Pantry Items</span>
+                            <span class="front">Pantry</span>
+                            <span class="back">Pantry</span>
                         </span>
                     </a>
                 </li>
                 <li>
                     <a href="#recipeNav" class="three-d">
-                        Recipe
+                        Recipes
                         <span aria-hidden="true" class="three-d-box">
-                            <span class="front">Recipe Book</span>
-                            <span class="back">Recipe Book</span>
+                            <span class="front">Recipes</span>
+                            <span class="back">Recipes</span>
                         </span>
                     </a>
                 </li>
@@ -127,9 +127,8 @@
             <h2 class="card-header text-center">Pantry</h2>
             <div id="pantry-container" class="card-body">
                 <div class="input-group">
-                    <input id="pantry-input" type="text" class="form-control text-center" aria-label="addPantryItem" placeholder="Add Item Here"
+                    <input id="pantry-input" type="text" class="form-control text-center" aria-label="addPantryItem" placeholder="Insert Pantry Item Here"
                         pattern="[A-Za-z]" required>
-
                     <input id="add-quantity-input" type="text" class="form-control text-center" aria-label="addItemQuantity" placeholder="Qty."
                         pattern="[0-9]" required>
                     <select id="measurement">
@@ -143,8 +142,9 @@
                     </select>
                     <br>
                 </div>
-                <button class="btn btn-outline-light float-right" type="button" id="getRecipe">Get Recipe</button>
-                <button class="btn btn-outline-light float-left" type="button" id="addPantryItem">Add Item</button>
+                <button class="btn btn-outline-light float-left firstButton" type="button" id="addPantryItem">Add Item</button>
+                <button class="btn btn-outline-light float-left" type="button" id="get-fake-recipe">Recipe Suggestions</button>
+                <button class="btn btn-outline-light float-right lastButton" type="button" id="getRecipe">Get Recipe</button>
                 <br>
                 <table class="table table-hover">
                     <thead>
@@ -165,10 +165,6 @@
         <div class="card bg-secondary">
             <h2 class="card-header text-center" id=recipeTitle>Recipes</h2>
             <div class="card-body">
-
-                <button class="btn btn-outline-light float-left" type="button" id="get-fake-recipe">Recipe Suggestions</button>
-                <!-- Shopping list goes in this div -->
-                <br>
                 <!-- Recipes list goes in this div -->
                 <div id="recipes-list" class="d-flex align-content-start justify-content-center flex-wrap">
 

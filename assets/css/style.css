@@ -290,12 +290,15 @@ box-sizing: border-box;
 button{
     margin: 10px;
 }
-
-.firstButton{
-    margin-left:0;
-
+/* Setting the first and last button to have 0 margin on left and right side */
+.firstButton {
+    margin-left: 0;
 }
 
+.lastButton {
+    margin-right: 0; 
+}
+/* Letting the tables equal out on the page */
 table {
     table-layout: fixed;
     width: 100%;
@@ -304,7 +307,7 @@ table {
 
 /* -----------------------carousel mobile fix ---------------------- */
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 991px) {
  
     #hideOnMobile {
         display: none;
@@ -312,3 +315,13 @@ table {
  }
 
  /* -----------------------carousel mobile fix end ---------------------- */
+/* Changing color of the buttons */
+.delete-pantry-item,
+.delete-shopping-list-item {
+    background: red;
+    border-color: grey;
+}
+
+img.dblock {
+    background-size: contain;
+}
