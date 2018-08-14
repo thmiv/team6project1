@@ -268,11 +268,12 @@ function addSubSearchList(event) {
 // ---------------------------------------------------------------------------------------------------------
 
 function populateRecipes(response) {
+    $("#recipes-list").empty();
     response.forEach(renderRecipe);
 }
 
 function renderRecipe(recipe) {
-    
+
    var recipeDiv= $("<div>")
        .attr("class", "recipeBox");
 
@@ -542,9 +543,8 @@ $(document).on("click", "#clearRecipeList", function(event){
 // Search for recipes by manual input
 $(document).on("click", "#searchRecipeList", function(){
     console.log("Search Clicked");
-    mockRecipes.forEach(renderRecipe);
-    // getInputBasedRecipes()
-    // .then(populateRecipes);
+    getInputBasedRecipes()
+    .then(populateRecipes);
 });
 
 // Deletes manual search item
