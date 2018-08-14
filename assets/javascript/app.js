@@ -536,6 +536,8 @@ $(document).on("click", ".delete-search-item", removeSearchItem);
 $(document).on("click", "#searchForSub", function(event){
     console.log("Sub Search Clicked");
     addSubSearchList(event);
+});
+
 $(document).on("click", ".view-recipe", function() {
     $("#recipe-modal").modal("show");
     $("#recipe-modal-body").empty();
@@ -560,9 +562,4 @@ $(document).on("click", ".view-recipe", function() {
             .css({ width: "100%" });
         $("#recipe-modal-body").append(recipeIframe);
     });
-
 });
-
-/****************************************
- * End Listeners Section
- ***************************************/
