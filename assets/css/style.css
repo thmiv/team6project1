@@ -276,4 +276,5 @@ box-sizing: border-box;
 /* Map Div */
 #mapDiv{
     height: 100%;
+    color: black;
 }
