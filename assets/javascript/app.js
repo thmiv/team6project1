@@ -432,7 +432,7 @@ function renderListItem(item, amountValue){
  /****************************************
  * Get Ingredient Images Section
  ***************************************/
-/*
+
 function getIngredientParse(ingredientItem) {
 
     var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/parseIngredients?";
@@ -453,15 +453,17 @@ function getIngredientParse(ingredientItem) {
         }
     });
 }
-function getIngredientImage(response){
-    console.log(response);
-    console.log(response.image);
-    var imageName = "iceberg-lettuce";
-    var imageUrl = "https://spoonacular.com/cdn/ingredients_100x100/" + imageName + ".jpg";
-    //console.log(imageUrl);
+
+function getIngredientImage(parseObject){
+    var imageUrl;
+    getIngredientParse(parseObject)
+		.then(function(response){
+			console.log(response);
+            imageUrl = "https://spoonacular.com/cdn/ingredients_100x100/" + response[0].image;
+            console.log(imageUrl);
+		});
 }
-getIngredientImage(getIngredientParse("1 head of lettuce"));
-*/
+
  /****************************************
  * End Ingredient Images Section
  ***************************************/
