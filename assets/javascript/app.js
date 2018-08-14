@@ -252,7 +252,7 @@ function addSubSearchList(event) {
                 console.log(response);
                 console.log(response.status);
                 if (response.status == "failure"){
-                    $("#alternate-ingredients-list").append("Coud not fund a substitute for that item");
+                    $("#alternate-ingredients-list").append("Coud not find a substitute for that item.");
                 } else {
                     response.substitutes.forEach(function(substitute){
                         var subTREL = $("<tr>").attr("class", "alternates");
