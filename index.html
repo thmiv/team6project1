@@ -206,14 +206,16 @@
                             <br>
                             <div class="input-group">
                                 <input id="recipe-input" type="text" class="form-control text-center" aria-label="addPantryItem" placeholder="Add Single Recipe Ingredient">
-                                <br>
-                            </div>                         
+                            </div>  
+                            <div id="manual-search-buttons">
+                                    <button class="btn btn-outline-light" type="button" id="addRecipeItem">Add Item</button>
+                                    <button class="btn btn-outline-light" type="button" id="clearRecipeList">Clear List</button> 
+                                    <button class="btn btn-outline-light" type="button" id="searchRecipeList">Search for Recipes</button> 
+                                </div>                       
                             <table class="table table-hover">      
                                 <tbody id="search-ingredients-list"></tbody>
                             </table>
-                            <button class="btn btn-outline-light float-left" type="button" id="addRecipeItem">Add Item</button>
-                            <button class="btn btn-outline-light float-left" type="button" id="clearRecipeList">Clear List</button> 
-                            <button class="btn btn-outline-light float-left" type="button" id="searchRecipeList">Search for Recipes</button> 
+                            <div class="d-flex align-content-start justify-content-center flex-wrap" id="show-man-recipe"></div>
                         </div>
                     </div>
                     <!-- Third tab in NAV element  -->
@@ -223,8 +225,10 @@
                             <div class="input-group">
                                 <input id="sub-input" type="text" class="form-control text-center" aria-label="addSubItem" placeholder="Add Substitutable Ingredient">
                                 <br>
-                            </div>                                                    
-                            <button class="btn btn-outline-light float-left" type="button" id="searchForSub">Search for Alternates</button> 
+                            </div>    
+                            <div id="alt-button">                                                
+                                <button class="btn btn-outline-light float-left" type="button" id="searchForSub">Search for Alternates</button> 
+                            </div>
                             <table class="table table-hover">
                                 <tbody id="alternate-ingredients-list">
                                 </tbody>

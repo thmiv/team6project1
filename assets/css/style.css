@@ -313,12 +313,14 @@ table {
     height: 100%;
     color: black;
 }
-
-
+#manual-search-buttons, #alt-button {
+    display: flex;
+    justify-content: center;
+}
 /* -----------------------carousel mobile fix end ---------------------- */
 /* Changing color of the buttons */
 .delete-pantry-item,
-.delete-shopping-list-item {
+.delete-shopping-list-item, .delete-search-item {
     background: red;
     border-color: grey;
 }
