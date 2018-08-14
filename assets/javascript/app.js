@@ -462,7 +462,8 @@ function getIngredientImage(parseObject){
 			console.log(response);
             imageUrl = "https://spoonacular.com/cdn/ingredients_100x100/" + response[0].image;
             console.log(imageUrl);
-		});
+        });
+    return imageUrl;
 }
 
  /****************************************
@@ -500,6 +501,7 @@ $("#add-quantity-input").keypress(function (event) {
 // Return a mocked API response from Spoonacular
 // (For testing purposes and not exceeding quotas)
 $("#get-fake-recipe").click(function() {
+    $("#recipes-list").empty();
     mockRecipes.forEach(renderRecipe);
 });
 
@@ -543,8 +545,10 @@ $(document).on("click", "#clearRecipeList", function(event){
 // Search for recipes by manual input
 $(document).on("click", "#searchRecipeList", function(){
     console.log("Search Clicked");
-    getInputBasedRecipes()
-    .then(populateRecipes);
+    $("#recipes-list").empty();
+    mockRecipes.forEach(renderRecipe);
+    // getInputBasedRecipes()
+    // .then(populateRecipes);
 });
 
 // Deletes manual search item
