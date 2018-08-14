@@ -4,6 +4,11 @@
 var map;
 var infowindow;
 
+var service;
+var userLocation;
+var x = 0;
+var storeNames = ["H-E-B", "Target", "Walmart", "WholeFoods"];
+
 var queryUrl = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCVf591AZ-evHODFReCvcQ56eAJZecmLgc";
 
 $.ajax({
@@ -11,11 +16,12 @@ $.ajax({
     method: "POST",
 
 }).then(function(response){
-    initMap(response.location);
+  userLocation = response.location;
+  initMap();
 
 });
 
-function initMap(userLocation) {
+function initMap() {
 
   map = new google.maps.Map(document.getElementById('mapDiv'), {
     center: userLocation, "accuracy": 50,
@@ -23,19 +29,30 @@ function initMap(userLocation) {
   });
 
   infowindow = new google.maps.InfoWindow();
-  var service = new google.maps.places.PlacesService(map);
+  service = new google.maps.places.PlacesService(map);
+  findPlaces();
+}
+
+function findPlaces(){
   service.nearbySearch({
-    location: userLocation, "accuracy": 50,
-    radius: 800,
-    type: ['store']
+    location: userLocation, 
+    accuracy: 50,
+    radius: 7000,
+    type: ['store'],
+    name: storeNames[x]
   }, callback);
 }
 
 function callback(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
-      createMarker(results[i]);
+        console.log(storeNames[x] + " found");
+        createMarker(results[i]);
     }
+  }
+  x++;
+  if(x < 4){
+    findPlaces()
   }
 }
 
