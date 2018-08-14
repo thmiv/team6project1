@@ -296,6 +296,42 @@ function renderListItem(item){
  * End Shopping List Section
  ***************************************/
 
+ /****************************************
+ * Get Ingredient Images Section
+ ***************************************/
+
+// function getIngredientParse(ingredientItem) {
+
+//     var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/parseIngredients?";
+    
+//     queryUrl += $.param({
+//         includeNutrition: false,
+//         ingredientList: ingredientItem,
+//         servings: "1"
+//     });
+//         console.log("URL: " + queryUrl);
+//     return $.ajax({
+//         method: "POST",
+//         url: queryUrl,
+//         headers: {
+//             "X-Mashape-Key": mashapeKey,
+//             "Content-Type": "application/x-www-form-urlencoded",
+//             "Accept": "application/json"
+//         }
+//     });
+// }
+// function getIngredientImage(response){
+//     console.log(response);
+//     console.log(response.length);
+//     var imageName = "iceberg-lettuce";
+//     var imageUrl = "https://spoonacular.com/cdn/ingredients_100x100/" + imageName + ".jpg";
+//     console.log(imageUrl);
+// }
+// getIngredientImage(getIngredientParse("1 head of lettuce"));
+
+ /****************************************
+ * End Ingredient Images Section
+ ***************************************/
 
  /****************************************
  * Listeners Section
@@ -365,11 +401,14 @@ $(document).on("click", "#clearRecipeList", function(){
     $("#recipe-input").val("");
     addRecipeSearchItem(event);
 });
+// Search for recipes by manual input
 $(document).on("click", "#searchRecipeList", function(){
     console.log("Search Clicked");
-    getInputBasedRecipes()
-    .then(populateRecipes);
+    mockRecipes.forEach(renderRecipe);
+    // getInputBasedRecipes()
+    // .then(populateRecipes);
 });
+
 /****************************************
  * End Listeners Section
  ***************************************/
