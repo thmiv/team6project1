@@ -47,7 +47,8 @@ function removePantryItem(snapshot) {
     database.ref("/Pantry").child(foodItemID).remove();
 }
 
-function renderPantryList(item, key) {
+function renderPantryList(item, key, imageUrl) {
+    console.log("In renderPantryLst: ", imageUrl);
     /**
     * <tr class="pantry-item">
         <td id=pantryItem>carrots</td>
@@ -94,7 +95,8 @@ database.ref("/Pantry").on("value", function(snapshot) {
         var key = childSnapshot.key;
 
         userPantry.push(item);
-        renderPantryList(item, key);
+        getIngredientImage(item, key);
+
     });
 });
 
@@ -520,14 +522,14 @@ function getIngredientParse(ingredientItem) {
     });
 }
 
-function getIngredientImage(parseObject){
+function getIngredientImage(item, key){
     var imageUrl = "";
-    getIngredientParse(parseObject)
+    getIngredientParse(item.inventoryItem)
 		.then(function(response){
 			console.log(response);
             imageUrl = "https://spoonacular.com/cdn/ingredients_100x100/" + response[0].image;
             console.log(imageUrl);
-            return imageUrl;
+            renderPantryList(item, key, imageUrl);
         });
 }
 
