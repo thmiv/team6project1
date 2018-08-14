@@ -149,11 +149,9 @@ function getInventoryBasedRecipes() {
             recipeSearchItems.push(addSearchItem);
             console.log(recipeSearchItems);
         }
-        recipeSearchItems.forEach(function(RSitem){
-            var rsItemHtml = "";
-            rsItemHtml = "<li>" + RSitem + "</li>";
-            $('#search-ingredients-list').append(rsItemHtml);
-        });
+        for (i = 0; i < recipeSearchItems.length; i++){
+            renderManualList(recipeSearchItems[i], i)
+        }
     }
 
     function getInputBasedRecipes() {
@@ -182,7 +180,38 @@ function getInventoryBasedRecipes() {
             }
         });
     }
-// -----------------------------------------------------
+// Manual search list generation --------------------------------------
+function renderManualList(item, key) {
+
+    var trEl = $("<tr>").attr("class", "search-item").attr("id", key);
+
+    var nameTd = $("<td>")
+        .text(item)
+        .attr("class", "is-item")
+        .attr("data-item", key);
+
+    var removeBtn = $("<button>")
+        .attr("data-item", key)
+        .attr("class", "delete-search-item");
+
+    var fontawesomeTrash = $("<i>").attr("class", "fas fa-trash-alt");
+    removeBtn.append(fontawesomeTrash);
+
+
+    trEl
+        .append(nameTd)
+        .append(removeBtn)
+
+    $('#search-ingredients-list').append(trEl);
+}
+// Removal of item in manual search list
+function removeSearchItem() {
+    var searchItemID = $(this).attr("data-item");
+    console.log(searchItemID);
+    $("#"+searchItemID).remove();
+    recipeSearchItems.splice(searchItemID, 1);
+}
+//-------------------------------------------------------------
 
 function populateRecipes(response) {
     response.forEach(renderRecipe);
@@ -299,36 +328,36 @@ function renderListItem(item){
  /****************************************
  * Get Ingredient Images Section
  ***************************************/
+/*
+function getIngredientParse(ingredientItem) {
 
-// function getIngredientParse(ingredientItem) {
-
-//     var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/parseIngredients?";
+    var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/parseIngredients?";
     
-//     queryUrl += $.param({
-//         includeNutrition: false,
-//         ingredientList: ingredientItem,
-//         servings: "1"
-//     });
-//         console.log("URL: " + queryUrl);
-//     return $.ajax({
-//         method: "POST",
-//         url: queryUrl,
-//         headers: {
-//             "X-Mashape-Key": mashapeKey,
-//             "Content-Type": "application/x-www-form-urlencoded",
-//             "Accept": "application/json"
-//         }
-//     });
-// }
-// function getIngredientImage(response){
-//     console.log(response);
-//     console.log(response.length);
-//     var imageName = "iceberg-lettuce";
-//     var imageUrl = "https://spoonacular.com/cdn/ingredients_100x100/" + imageName + ".jpg";
-//     console.log(imageUrl);
-// }
-// getIngredientImage(getIngredientParse("1 head of lettuce"));
-
+    queryUrl += $.param({
+        includeNutrition: false,
+        ingredientList: ingredientItem,
+        servings: "1"
+    });
+        console.log("URL: " + queryUrl);
+    return $.ajax({
+        method: "POST",
+        url: queryUrl,
+        headers: {
+            "X-Mashape-Key": mashapeKey,
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Accept": "application/json"
+        }
+    });
+}
+function getIngredientImage(response){
+    console.log(response);
+    console.log(response.image);
+    var imageName = "iceberg-lettuce";
+    var imageUrl = "https://spoonacular.com/cdn/ingredients_100x100/" + imageName + ".jpg";
+    //console.log(imageUrl);
+}
+getIngredientImage(getIngredientParse("1 head of lettuce"));
+*/
  /****************************************
  * End Ingredient Images Section
  ***************************************/
@@ -390,12 +419,12 @@ $("#recipe-input").keypress(function (event) {
     }
 });
 // Add recipe ingredient item by click
-$(document).on("click", "#addRecipeItem", function(){
+$(document).on("click", "#addRecipeItem", function(event){
     console.log("Add Clicked");
     addRecipeSearchItem(event);
 });
 // Clear recipe list array
-$(document).on("click", "#clearRecipeList", function(){
+$(document).on("click", "#clearRecipeList", function(event){
     console.log("Clear Clicked");
     recipeSearchItems = [];
     $("#recipe-input").val("");
@@ -408,6 +437,8 @@ $(document).on("click", "#searchRecipeList", function(){
     // getInputBasedRecipes()
     // .then(populateRecipes);
 });
+// Deletes manual search item
+$(document).on("click", ".delete-search-item", removeSearchItem);   
 
 /****************************************
  * End Listeners Section
