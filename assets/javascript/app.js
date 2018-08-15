@@ -110,6 +110,7 @@ database.ref("/Pantry").on("value", function(snapshot) {
 
  // Get recipes based on your kitchen inventory
 function getInventoryBasedRecipes() {
+    $("#recipes-list").empty();
     var ingredientsList = userPantry.map((item) => item.inventoryItem).join(",");
     console.log(ingredientsList);
 
@@ -156,6 +157,7 @@ function addRecipeSearchItem(event) {
 }
 
 function getInputBasedRecipes() {
+    $("#recipes-list").empty();
     var ingredientsList2 = "";
     for (i = 0; i < recipeSearchItems.length; i++){
         ingredientsList2 += recipeSearchItems[i] + ","
@@ -360,21 +362,27 @@ function populateShoppingList(response){
         // Check if the shopping list item matches any of our pantry items
         var matchedIngredient = userPantry.find(function(pantryItem) {
 
-
-            var tokenizedLIName = listIngredient.name.split(" ");
-            var re;
-            tokenizedLIName.forEach(function(token) {
-                re = new RegExp(token + "*", 'i');    
-            });
-            
             // keep track of how much we need to buy vs 
             // how much of that item we already have
             neededAmount = listIngredient.amount - pantryItem.itemQuantity;
+            if (neededAmount < 0) {
+                neededAmount = 0;
+            }
+            
+            tokenizedListIngredient = listIngredient.name.toLowerCase().split(" ");
+            tokenizedPantryItem = pantryItem.inventoryItem.toLowerCase().split(" ");
+            
+            var result = tokenizedListIngredient.filter(function(item) { 
+                return tokenizedPantryItem.indexOf(item) > -1;
+            });
 
-            return re.test(pantryItem.inventoryItem);
+            var hasMatch = (result.length >= 1);
+            return hasMatch;
         });
         
-        if (matchedIngredient && neededAmount > 0) {
+        console.log(matchedIngredient, listIngredient);
+
+        if (matchedIngredient > 0) {
             renderListItem(listIngredient, neededAmount);
         }
 
@@ -403,7 +411,7 @@ function renderListItem(item, amountValue){
         .attr("class", "item");
 
    var quantityTd = $("<td>")
-        .text(parseInt(amount) + " " + measure)
+        .text(amount.toString() + " " + measure)
         .attr("class", "text-center");
 
    var removeTd = $("<td>")
@@ -503,6 +511,7 @@ $("#get-fake-recipe").click(function() {
 // Get recipes based on inventory items
 // by clicking on the Add Pantry Item button
 $("#getRecipe").click(function() {
+    $("#recipes-list").empty();
     getInventoryBasedRecipes()
         .then(populateRecipes);
 });
