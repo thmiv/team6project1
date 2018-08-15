@@ -329,6 +329,15 @@ img.dblock {
     background-size: contain;
 }
 
+#tcolor {
+    background: rgb(117, 110, 110);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.padding{
+    padding: 20px;
+}
+
 /* -----------------------carousel mobile fix ---------------------- */
 
 @media screen and (max-width: 992px) {

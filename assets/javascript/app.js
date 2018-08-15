@@ -134,6 +134,8 @@ function getInventoryBasedRecipes() {
     });
 }
 
+$("#tcolor").hide();
+
 // search recipes by user manual input ---------------------
 function addRecipeSearchItem(event) {
     event.preventDefault();
@@ -591,6 +593,7 @@ $(document).on("click", ".get-shopping-list", function(){
 $("#recipe-input").keypress(function (event) {
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if (keycode === 13) {
+        $("#tcolor").show();
         addRecipeSearchItem(event);
     }
 });
@@ -598,6 +601,7 @@ $("#recipe-input").keypress(function (event) {
 // Add recipe ingredient item by click
 $(document).on("click", "#addRecipeItem", function(event){
     console.log("Add Clicked");
+    $("#tcolor").show();
     addRecipeSearchItem(event);
 });
 
@@ -606,6 +610,7 @@ $(document).on("click", "#clearRecipeList", function(event){
     console.log("Clear Clicked");
     recipeSearchItems = [];
     $("#recipe-input").val("");
+    $("#tcolor").hide();
     addRecipeSearchItem(event);
 });
 
