@@ -1,115 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Team 6 Project -temp title-</title>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- CSS Reset -->
     <link rel="stylesheet" href="assets/css/reset.css">
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- CSS file -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
     <!-- config file -->
     <script src="assets/javascript/config.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Modern+Antiqua" rel="stylesheet">
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+
 </head>
 
 <body>
 
-    <div id="titleSpacer">
-        <div class="titleImg">
-            <h1 class="ml8">
-                <span class="letters-container">
-                  <span class="letters letters-left">The Pantry</span>
-                </span>
-                <span class="circle circle-dark"></span>
-                <span class="circle circle-container"><span class="circle circle-dark-dashed"></span></span>
-              </h1>
-            <img width="100%" height="275" src="https://www.ocf.berkeley.edu/~sather/wp-content/uploads/2018/01/food--1200x600.jpg" alt="">
-        </div>
-    </div>
-    <div id="navbar">
-        <div class="navlist">
-            <a href="#Top">Pantry</a>
-            <a href="#recipeNav">Recipes</a>
-            <a href="#shoppingNav">Shopping</a>
-            <a href="#mapNav">Map</a>
-        </div>
-
-        <div class="input-group">
-            <input id="pantry-input" type="text" class="form-control" aria-label="addPantryItem" placeholder="Insert Pantry Item Here">
-            <div class="input-group-append">
-                <button class="btn btn-outline-light" type="button" id="submit">Submit</button>
+    <!-- Modal -->
+    <div class="modal fade" id="recipe-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Recipe</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="recipe-modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
 
+    <div id="titleSpacer">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-4">
+                            <img class="d-block" width="100%" height="275" src="https://www.ocf.berkeley.edu/~sather/wp-content/uploads/2018/01/food--1200x600.jpg"
+                                alt="First slide">
+                        </div>
+                        <div class="col-lg-4" id="hideOnMobile">
+                            <img class="d-block" width="100%" height="275" src="https://img.huffingtonpost.com/asset/585be1aa1600002400bdf2a6.jpeg?ops=scalefit_970_noupscale"
+                                alt="First slide">
+                        </div>
+                        <div class="col-lg-4" id="hideOnMobile">
+                            <img class="d-block" width="100%" height="275" src="https://caspiannews.com/media/caspian_news/all_original_photos/1528831479_7183783_1528831390_5761793SFF-Foto-2018-001web2.jpg"
+                                alt="First slide">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-4">
+                            <img class="d-block" width="100%" height="275" src="https://foodrevolution.org/wp-content/uploads/2018/03/blog-featured_healthy_foods-20180306.jpg"
+                                alt="First slide">
+                        </div>
+                        <div class="col-lg-4" id="hideOnMobile">
+                            <img class="d-block" width="100%" height="275" src="http://thearenafitness.com/wp-content/uploads/2017/02/Overeat-Greasy-Foods.jpg"
+                                alt="First slide">
+                        </div>
+                        <div class="col-lg-4" id="hideOnMobile">
+                            <img class="d-block" width="100%" height="275" src="https://grist.files.wordpress.com/2017/06/vegetables.jpg?w=1200" alt="First slide">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <h1 class="ml8">
+            <span class="letters-container">
+                <span class="letters letters-left">The Pantry</span>
+            </span>
+            <span class="circle circle-dark"></span>
+            <span class="circle circle-container">
+                <span class="circle circle-dark-dashed"></span>
+            </span>
+        </h1>
+    </div>
+    <div id="navbar">
+        <div class="navlist">
+            <ul class="block-menu">
+                <li>
+                    <a href="#Top" class="three-d">
+                        Pantry
+                        <span aria-hidden="true" class="three-d-box">
+                            <span class="front">Pantry Items</span>
+                            <span class="back">Pantry Items</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#recipeNav" class="three-d">
+                        Recipes
+                        <span aria-hidden="true" class="three-d-box">
+                            <span class="front">Recipe Book</span>
+                            <span class="back">Recipe Book</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#shoppingNav" class="three-d">
+                        Shopping
+                        <span aria-hidden="true" class="three-d-box">
+                            <span class="front">Shopping List</span>
+                            <span class="back">Shopping List</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
     <div id="body" class="container">
         <div id="pantryNav"></div>
         <div class="card bg-secondary">
-            <h2 class="card-header text-center">Pantry</h2>
-            <div class="card-body">
-                <!-- Pantry list goes in this div -->
-                <div id="pantry-list">
-
+            <h2 class="card-header text-center">Pantry Items</h2>
+            <div id="pantry-container" class="card-body">
+                <div class="input-group">
+                    <input id="pantry-input" type="text" class="form-control text-center" aria-label="addPantryItem" placeholder="Add Item Here"
+                        pattern="[A-Za-z]" required>
+                    <input id="add-quantity-input" type="text" class="form-control text-center" aria-label="addItemQuantity" placeholder="Qty."
+                        pattern="[0-9]" required>
+                    <select id="measurement">
+                        <option value="pieces">pcs</option>
+                        <option value="lbs">lbs</option>
+                        <option value="oz">oz</option>
+                        <option value="cups">cups</option>
+                        <option value="grams">grams</option>
+                        <option value="liters">liters</option>
+                        <option value="milliliters">liters</option>
+                    </select>
+                    <br>
                 </div>
-                <button class="btn btn-outline-light float-left" type="button" id="addPantryItem">Add Pantry Item</button>
-                <button class="btn btn-outline-light float-right" type="button" id="getRecipe">Get Recipe</button>
-                <button class="btn btn-outline-light float-right" type="button" id="get-fake-recipe">Get Fake Recipe</button>
+                <button class="btn btn-outline-light float-left firstButton" type="button" id="addPantryItem">Add Item</button>
+                <button class="btn btn-outline-light float-left" type="button" id="get-fake-recipe">Recipe Suggestions</button>
+                <button class="btn btn-outline-light float-right lastButton" type="button" id="getRecipe">Get Recipe</button>
+                <br>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ITEM</th>
+                            <th scope="col" class="text-center">QUANTITY</th>
+                            <th scope="col" class="text-right">REMOVE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pantryList">
+
+                    </tbody>
+                </table>
             </div>
         </div>
         <!-- RECIPES -->
         <div id="recipeNav" class="navLocation"></div>
         <div class="card bg-secondary">
-            <h2 class="card-header text-center" id=recipeTitle>Recipes</h2>
+            <h2 class="card-header text-center" id=recipeTitle>Recipe Book</h2>
             <div class="card-body">
-                <!-- Recipes list goes in this div -->
-                <div id="recipes-list" class="d-flex align-content-start flex-wrap">
-
+                <!-- TABBED NAV ELEMENT  -->
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
+                            aria-selected="true">Recipes by Pantry</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile"
+                            aria-selected="false">Manual Ingredient Search</a>
+                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact"
+                            aria-selected="false">Search for Ingredient Substitute</a>
+                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#map-tab" role="tab" aria-controls="nav-contact"
+                            aria-selected="false">Search Stores Near You</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <!-- Recipe list by pantry goes in here  -->
+                        <div id="recipes-list" class="d-flex align-content-start justify-content-center flex-wrap">
+                        </div>
+                    </div>
+                    <!-- Manual ingredient entry for recipe search here  -->
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="card bg-secondary padding">
+                            <br>
+                            <div class="input-group">
+                                <input id="recipe-input" type="text" class="form-control text-center" aria-label="addPantryItem" placeholder="Add Single Recipe Ingredient">
+                            </div>
+                            <div id="manual-search-buttons">
+                                <button class="btn btn-outline-light" type="button" id="addRecipeItem">Add Item</button>
+                                <button class="btn btn-outline-light" type="button" id="clearRecipeList">Clear List</button>
+                                <button class="btn btn-outline-light" type="button" id="searchRecipeList">Search for Recipes</button>
+                            </div>
+                            <table id="tcolor" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ITEM</th>
+                                        <th scope="col" class="text-right">REMOVE</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="search-ingredients-list"></tbody>
+                            </table>
+                            <div class="d-flex align-content-start justify-content-center flex-wrap" id="show-man-recipe"></div>
+                        </div>
+                    </div>
+                    <!-- Third tab in NAV element  -->
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <div class="card bg-secondary padding">
+                            <br>
+                            <div class="input-group">
+                                <input id="sub-input" type="text" class="form-control text-center" aria-label="addSubItem" placeholder="Add Substitutable Ingredient">
+                                <br>
+                            </div>
+                            <div id="alt-button">
+                                <button class="btn btn-outline-light float-left" type="button" id="searchForSub">Search for Alternates</button>
+                            </div>
+                            <table class="table table-hover">
+                                <tbody id="alternate-ingredients-list">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- map tab -->
+                    <div class="tab-pane fade" id="map-tab" role="tabpanel" aria-labelledby="map-tab">
+                        <!-- Recipe list by pantry goes in here  -->
+                        <div id="mapDiv" style="width:100%;height:400px;background:gray"></div>
+                    </div>
                 </div>
-                <button class="btn btn-outline-light float-right" type="button" id="getShoppingList">Get Shopping List</button>
             </div>
         </div>
+
         <!-- SHOPPING LIST -->
         <div id="shoppingNav" class="navLocation"></div>
         <div class="card bg-secondary">
-            <h2 class="card-header text-center" id=s hoppingTitle>Shopping List</h2>
+            <h2 class="card-header text-center" id=shoppingTitle>Shopping List</h2>
             <div class="card-body">
                 <!-- Shopping list goes in this div -->
-                <div id="shopping-list">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ITEM</th>
+                            <th scope="col" class="text-center">QUANTITY</th>
+                            <th scope="col" class="text-right">REMOVE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="shoppingList">
 
-                </div>
-                <button class="btn btn-outline-light float-right" type="button" id="clearList">Clear Shopping List</button>
+                    </tbody>
+                </table>
             </div>
-        </div>
-        <!-- MAP -->
-        <div id="mapNav" class="navLocation"></div>
-        <div class="card bg-secondary">
-            <h2 class="card-header text-center" id=m apTitle>Map</h2>
-            <div class="card-body">
-                <!-- Shopping list goes in this div -->
-                <div id="map-list">
-                
-                </div>
-                <button class="btn btn-outline-light float-right" type="button" id="clearList">Find Local Retailers</button>
-            </div>
-
         </div>
     </div>
-</body>
 
+</body>
 <!-- our own JS -->
 <script src="assets/javascript/app.js"></script>
 <script src="assets/javascript/navbar.js"></script>
 <script src="assets/javascript/logo.js"></script>
-
+<script src="assets/javascript/maps.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVf591AZ-evHODFReCvcQ56eAJZecmLgc&libraries=places" async
+    defer></script>
 
 </html>
