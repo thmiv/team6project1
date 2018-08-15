@@ -313,18 +313,29 @@ table {
     height: 100%;
     color: black;
 }
-
-
+#manual-search-buttons, #alt-button {
+    display: flex;
+    justify-content: center;
+}
 /* -----------------------carousel mobile fix end ---------------------- */
 /* Changing color of the buttons */
 .delete-pantry-item,
-.delete-shopping-list-item {
+.delete-shopping-list-item, .delete-search-item {
     background: red;
     border-color: grey;
 }
 
 img.dblock {
     background-size: contain;
+}
+
+#tcolor {
+    background: rgb(117, 110, 110);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.padding{
+    padding: 20px;
 }
 
 /* -----------------------carousel mobile fix ---------------------- */
