@@ -625,9 +625,9 @@ $(document).on("click", "#clearRecipeList", function(event){
 $(document).on("click", "#searchRecipeList", function(){
     console.log("Search Clicked");
     $("#recipes-list").empty();
-    mockRecipes.forEach(renderManRecipe);
-    // getInputBasedRecipes()
-    // .then(populateManRecipes);
+    //mockRecipes.forEach(renderManRecipe);
+     getInputBasedRecipes()
+     .then(populateManRecipes);
 });
 
 // Deletes manual search item
