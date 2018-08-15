@@ -134,8 +134,6 @@ function getInventoryBasedRecipes() {
     });
 }
 
-$("#tcolor").hide();
-
 // search recipes by user manual input ---------------------
 function addRecipeSearchItem(event) {
     event.preventDefault();
@@ -526,13 +524,14 @@ function getIngredientParse(ingredientItem) {
 
 function getIngredientImage(item, key){
     var imageUrl = "";
-    getIngredientParse(item.inventoryItem)
-		.then(function(response){
-			console.log(response);
-            imageUrl = "https://spoonacular.com/cdn/ingredients_100x100/" + response[0].image;
-            console.log(imageUrl);
-            renderPantryList(item, key, imageUrl);
-        });
+    // getIngredientParse(item.inventoryItem)
+	// 	.then(function(response){
+	// 		console.log(response);
+    //         imageUrl = "https://spoonacular.com/cdn/ingredients_100x100/" + response[0].image;
+    //         console.log(imageUrl);
+    //         renderPantryList(item, key, imageUrl);
+    //     });
+    renderPantryList(item, key, imageUrl);
 }
 
  /****************************************
@@ -642,6 +641,7 @@ $("#sub-input").keypress(function (event) {
 $(document).on("click", ".view-recipe", function() {
     $("#recipe-modal").modal("show");
     $("#recipe-modal-body").empty();
+    $("#tcolor").hide();
 
     var recipeId = $(this).attr("data-id");
     var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeId + "/information?includeNutrition=false";
