@@ -276,8 +276,8 @@ function addSubSearchList(event) {
 // Render recipes for manual input ----------------------------------------------------
 
 function populateManRecipes(response) {
-    $("#recipes-list").empty();
-    response.forEach(renderRecipe);
+    $("#show-man-recipe").empty();
+    response.forEach(renderManRecipe);
 }
 
 function renderManRecipe(recipe) {
