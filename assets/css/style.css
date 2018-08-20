@@ -317,12 +317,12 @@ table {
     justify-content: center;
 }
 /* -----------------------carousel mobile fix end ---------------------- */
-/* Changing color of the buttons */
+/* Changing color of the buttons 
 .delete-pantry-item,
 .delete-shopping-list-item, .delete-search-item {
     background: red;
     border-color: grey;
-}
+} */
 
 img.dblock {
     background-size: contain;
